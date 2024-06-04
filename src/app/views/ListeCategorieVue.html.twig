@@ -22,8 +22,8 @@
 	<div class="container mt-4">
 		<ul class="list-group">
 			{% for categorie in categories %}
-				<li class="list-group-item">
-					<a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/categorie/{{ categorie.id }}">{{ categorie.libelle }}</a>
+				<li class="list-group-item" onclick="window.location.href='/categorie/{{ categorie.id }}'" onmouseover="this.style.cursor='pointer'; this.style.backgroundColor='#f8f9fa';" onmouseout="this.style.backgroundColor='white';">
+					<a  class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/categorie/{{ categorie.id }}">{{ categorie.libelle }}</a>
 				</li>
 			{% endfor %}
 		</ul>
