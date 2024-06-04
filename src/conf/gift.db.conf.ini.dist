@@ -2,6 +2,6 @@ driver=mariadb
 username=root
 password=r00t
 host=sql.db
-database=td1_archi
+database=giftBox
 charset=utf8
 collation=utf8_unicode_ci
