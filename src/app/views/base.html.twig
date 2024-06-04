@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+
+		<title>
+			{% block title %}{% endblock %}
+		</title>
+
+		{% block stylesheets %}
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/litera/bootstrap.min.css" integrity="sha512-TUtnNUXMMWp2IALAR9t2z1vuorOUQL4dPWG3J9ANInEj6xu/rz5fzni/faoEGzuqeY1Z1yGD6COYAW72oiDVYA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/litera/bootstrap.rtl.min.css" integrity="sha512-FFEPJib/gQiVk2j/TgcpcFYsQ7MEcXfvc/vDtXkyEjt5dJ2ZnkZOV42g2l4+lqIx2R99D/3dhMKFJl1f60+VGw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+			<link rel="stylesheet" href="/css/style.css">
+			<link rel="icon" href="/img/favicon.ico">
+		{% endblock %}
+
+		{% block javascripts %}{% endblock %}
+	</head>
+	<body>
+		{% block header %}
+			{% include "header/navbar.html.twig" %}
+		{% endblock %}
+		{% block body %}{% endblock %}
+		{% block footer %}
+			{% include "footer/footer.html.twig" %}
+		{% endblock %}
+	</body>
+</html>

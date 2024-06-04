@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Categ - Detail
+{% endblock %}
+
+{% block body %}
+	<figure>
+		<blockquote class="blockquote mx-4 mt-4">
+			<h1>La catégorie
+				{{ categ.libelle }}</h1>
+			<p class="mb-0">{{ categ.description }}</p>
+
+		</blockquote>
+	</figure>
+
+	<hr>
+
+	<div class="container mt-4">
+		<h2>Les prestations de la catégorie :
+		</h2>
+
+		<table class="table table-hover table-primary table-bordered">
+			<thead>
+				<tr>
+					<th scope="col">Libelle</th>
+					<th scope="col">Id</th>
+					<th scope="col">Description</th>
+					<th scope="col">Tarif</th>
+				</tr>
+			</thead>
+
+			{% for prestation in prestations %}
+
+				<tbody>
+					<tr class="table-light">
+						<td>
+							<a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/prestation?id={{ prestation.id }}">{{ prestation.libelle }}</a>
+						</td>
+						<td>{{ prestation.id }}</td>
+						<td>{{ prestation.description }}</td>
+						<td>{{ prestation.tarif }}
+							€</td>
+					</tr>
+				</tbody>
+
+			{% endfor %}
+
+		</table>
+	</div>
+
+{% endblock %}

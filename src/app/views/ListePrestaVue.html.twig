@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Presta - Liste
+{% endblock %}
+
+{% block body %}
+
+	<figure>
+		<blockquote class="blockquote mx-4 mt-4">
+			<h1>Liste des préstations :
+			</h1>
+		</blockquote>
+	</figure>
+
+	<hr>
+
+	<div class="container mt-4">
+		<ul class="list-group mb-4">
+			{% for prestation in prestations %}
+				<li class="list-group-item">
+					<a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/prestation?id={{ prestation.id }}">{{ prestation.libelle }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+{% endblock %}

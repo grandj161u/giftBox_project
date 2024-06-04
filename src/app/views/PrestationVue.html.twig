@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Presta - Detail
+{% endblock %}
+
+{% block body %}
+	<figure>
+		<blockquote class="blockquote mx-4 mt-4">
+			<h1>La prestation
+				{{ prestation.libelle }}</h1>
+			<p class="mb-0">{{ prestation.description }}</p>
+
+			<p class="mb-0">{{ prestation.tarif }}
+				€</p>
+
+		</blockquote>
+	</figure>
+
+	<hr>
+
+{% endblock %}

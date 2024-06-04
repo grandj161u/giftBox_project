@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Categ - Liste
+{% endblock %}
+
+{% block body %}
+
+	{# <a href="/Architecture_Logicielle/gift/gift/gift.appli/public/categories" class="btn btn-primary btn-lg mx-4 mt-4">Retour</a> #}
+
+	<figure>
+		<blockquote class="blockquote mx-4 mt-4">
+			<h1>Liste des catégories :
+			</h1>
+		</blockquote>
+
+		<a href="/categories/createCateg" class="btn btn-primary btn-lg mx-4 mt-2">Créer une catégorie</a>
+	</figure>
+
+	<hr>
+
+	<div class="container mt-4">
+		<ul class="list-group">
+			{% for categorie in categories %}
+				<li class="list-group-item">
+					<a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/categorie/{{ categorie.id }}">{{ categorie.libelle }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+{% endblock %}
