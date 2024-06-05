@@ -18,16 +18,6 @@ class CreateCategPostAction
         }
         $tabNewCateg = ['libelle' => $data['libelle'], 'description' => $data['description']];
         $catalogue->createCategorie($tabNewCateg);
-
-        $csrf_token = CsrfService::generate();
-        $view = Twig::fromRequest($request);
-        return $view->render(
-            $response,
-            'CreateCateg.html.twig',
-            [
-                'csrf' => $csrf_token,
-                'message' => 'Catégorie créée'
-            ]
-        );
+        return $response->withStatus(302)->withHeader('Location', '/categories');
     }
 }
