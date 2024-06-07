@@ -1,11 +1,12 @@
 /src/vendor/*
 
-*/src/conf/gift.db.conf.ini
+/src/conf/gift.db.conf.ini
 
-*.idea
+/.idea
 
-*/src/composer.lock
+/src/composer.lock
+/src/composer.json
 
-*/.vscode/sftp.json
+/.vscode
 
-*/docker-compose.yml
+*.yml
