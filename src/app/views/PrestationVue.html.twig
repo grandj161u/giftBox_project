@@ -5,18 +5,24 @@
 {% endblock %}
 
 {% block body %}
+<div class="container mt-4">
 	<figure>
 		<blockquote class="blockquote mx-4 mt-4">
-			<h1>La prestation
-				{{ prestation.libelle }}</h1>
-			<p class="mb-0">{{ prestation.description }}</p>
-
-			<p class="mb-0">{{ prestation.tarif }}
+			<h2>{{ prestation.libelle }}</h2>
+			<p class="mb-0">Description : {{ prestation.description }}</p>
+			{% if prestation.url %}
+				<p class="mb-0">Url : {{ prestation.url }}</p>
+			{% endif %}
+			{% if prestation.unite %}
+				<p class="mb-0">Unité : {{ prestation.unite }}</p>
+			{% endif %}
+			<p class="mb-0">Tarif : {{ prestation.tarif }}
 				€</p>
+			<p class="mb-0">Catégorie : {{ prestation.categorie.libelle }}</p>
+			<img src="/img/{{ prestation.img }}" alt="...">
 
 		</blockquote>
 	</figure>
-
-	<hr>
+</div>
 
 {% endblock %}
