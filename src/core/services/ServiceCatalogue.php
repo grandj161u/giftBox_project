@@ -30,15 +30,15 @@ class ServiceCatalogue implements ServiceCatalogueInterface
         return $tabCateg->toArray();
     }
 
-    public function getPrestations(): Collection
+    public function getPrestations(): array
     {
         try {
-            $tabPresta = Prestation::all();
+            $tabPresta = Prestation::with("categorie")->get();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             throw new CatalogueNotFoundException("Toutes les Prestations ne sont pas trouvés : " . $e);
         }
 
-        return $tabPresta;
+        return $tabPresta->toArray();
     }
 
     public function getPrestationById($id): array

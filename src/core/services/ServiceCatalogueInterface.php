@@ -2,6 +2,8 @@
 
 namespace gift\appli\core\services;
 
+use Illuminate\Database\Eloquent\Collection;
+
 interface ServiceCatalogueInterface
 {
     public function getCategories(): array;
