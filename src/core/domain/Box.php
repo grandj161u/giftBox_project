@@ -23,7 +23,7 @@ class Box extends Eloquent
     public function prestation()
     {
         return $this->belongsToMany(
-            'gift\appli\models\Prestation',
+            Prestation::class,
             'box2presta',
             'box_id',
             'presta_id'

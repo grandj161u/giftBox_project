@@ -13,13 +13,13 @@ class Prestation extends Eloquent
 
     public function categorie()
     {
-        return $this->belongsTo('gift\appli\models\Categorie', 'cat_id');
+        return $this->belongsTo(Categorie::class, 'cat_id');
     }
 
     public function box()
     {
         return $this->belongsToMany(
-            'gift\appli\models\Box',
+            Box::class,
             'box2presta',
             'presta_id',
             'box_id'

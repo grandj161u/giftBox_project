@@ -13,6 +13,6 @@ class Categorie extends Eloquent
 
     public function prestation()
     {
-        return $this->hasMany('gift\appli\core\domain\Prestation', 'cat_id');
+        return $this->hasMany(Prestation::class, 'cat_id');
     }
 }
