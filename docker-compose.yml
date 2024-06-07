@@ -21,7 +21,9 @@ services:
 
   adminer:
     image: adminer
+    # command: php -S 0.0.0.0:8080
     ports:
+      # - "11555:8080"
       - "5080:8080"
     networks:
       - gift.net
@@ -29,6 +31,7 @@ services:
   php:
     image: canals/php:latest
     ports:
+      # - "11554:80"
       - "5180:80"
     volumes :
       - ./public:/var/www/html

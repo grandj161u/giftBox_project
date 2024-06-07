@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use gift\appli\app\actions\CreateBoxGetAction;
+use gift\appli\app\actions\CreateBoxPostAction;
 use gift\appli\app\actions\CreateCategGetAction;
 use gift\appli\app\actions\CreateCategPostAction;
 use gift\appli\app\actions\DetailCategAction;
@@ -9,6 +11,7 @@ use gift\appli\app\actions\HomeAction;
 use gift\appli\app\actions\ListeCategAction;
 use gift\appli\app\actions\DetailPrestationAction;
 use gift\appli\app\actions\ListePrestaAction;
+use gift\appli\app\actions\ListeBoxAction;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -48,6 +51,25 @@ return function (\Slim\App $app): \Slim\App {
         CreateCategPostAction::class
     );
 
+    $app->get(
+        '/box/createBox',
+        CreateBoxGetAction::class
+    );
+
+    $app->post(
+        '/box/createBox',
+        CreateBoxPostAction::class
+    );
+
+    $app->get(
+        '/box',
+        ListeBoxAction::class
+    );
+
+    // $app->get(
+    //     '/box/{id}',
+    //     DetailBoxAction::class
+    // );
 
     return $app;
 };

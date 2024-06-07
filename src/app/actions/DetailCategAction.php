@@ -22,11 +22,6 @@ class DetailCategAction
             throw new HttpNotFoundException($request, "La catégorie {$args['id']} n'existe pas", $e);
         }
 
-        $tabNewCateg = ['libelle' => 'Bonjour', 'description' => 'Je suis NLE'];
-
-        $catalogue->createCategorie($tabNewCateg);
-
-
         $view = Twig::fromRequest($request);
         return $view->render(
             $response,

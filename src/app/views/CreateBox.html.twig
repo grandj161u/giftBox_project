@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Create Box
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h2>Créer une box</h2>
+		<form action="/box/createBox" method="post">
+			<div class="form-group">
+				<label for="libelle">Libelle de la box</label>
+				<input type="text" class="form-control" id="libelle" name="libelle" required>
+			</div>
+			<div class="form-group mt-2">
+				<label for="description">Description de la box</label>
+				<input type="text" class="form-control" id="description" name="description" required>
+			</div>
+			<div class="form-check mt-2">
+				<input class="form-check-input" type="checkbox" value="1" id="isKdo" name="isKdo">
+				<label class="form-check-label" for="isKdo">
+					Est-ce une box cadeau ?
+				</label>
+			</div>
+			<div class="form-group mt-2">
+				<label for="msgKdo">Message cadeau</label>
+				<input type="text" class="form-control" id="msgKdo" name="msgKdo" required>
+			</div>
+			<div class="form-group">
+				<input type="hidden" class="form-control" name="csrf" value="{{ csrf }}" required>
+			</div>
+			<button type="submit" class="btn btn-primary mt-3">Créer</button>
+		</form>
+	</div>
+{% endblock %}
