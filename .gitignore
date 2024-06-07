@@ -7,3 +7,5 @@
 */src/composer.lock
 
 */.vscode/sftp.json
+
+*/docker-compose.yml
