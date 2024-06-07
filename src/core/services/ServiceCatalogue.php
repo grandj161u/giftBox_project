@@ -4,6 +4,7 @@ namespace gift\appli\core\services;
 
 use gift\appli\core\domain\Categorie;
 use gift\appli\core\domain\Prestation;
+use Illuminate\Database\Eloquent\Collection;
 
 class ServiceCatalogue implements ServiceCatalogueInterface
 {
@@ -29,7 +30,7 @@ class ServiceCatalogue implements ServiceCatalogueInterface
         return $tabCateg->toArray();
     }
 
-    public function getPrestations(): array
+    public function getPrestations(): Collection
     {
         try {
             $tabPresta = Prestation::all();
@@ -37,7 +38,7 @@ class ServiceCatalogue implements ServiceCatalogueInterface
             throw new CatalogueNotFoundException("Toutes les Prestations ne sont pas trouvés : " . $e);
         }
 
-        return $tabPresta->toArray();
+        return $tabPresta;
     }
 
     public function getPrestationById($id): array

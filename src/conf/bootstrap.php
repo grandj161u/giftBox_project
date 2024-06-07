@@ -20,9 +20,13 @@ $twig = \Slim\Views\Twig::create(
     __DIR__ . '/../app/views',
     [
         'cache' => false,
+        'debug' => true,
         'auto_reload' => true
     ]
 );
+
+//On ajoute les extensions de debug
+$twig->addExtension(new \Twig\Extension\DebugExtension());
 
 $app->add(\Slim\Views\TwigMiddleware::create($app, $twig));
 
