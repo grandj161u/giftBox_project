@@ -1,0 +1,20 @@
+<div class="container mt-4">
+    <ul class="list-unstyled d-flex flex-wrap justify-content-around">
+        {% for prestation in prestations %}
+            <li>
+                <div class="card" style="width: 20rem; height: 20rem;" onclick="window.location.href='/prestation?id={{ prestation.id }}'" onmouseover="this.style.cursor='pointer'; this.style.backgroundColor='#f8f9fa';" onmouseout="this.style.backgroundColor='white';">
+                    <div class="card-header">
+                        <h5 class="card-title">{{ prestation.libelle }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">tarif : {{ prestation.tarif }} €</p>
+
+                        <p class="card-text">catégorie : {{ prestation.categorie.libelle }}</p>
+
+                        <img src="/img/{{ prestation.img }}" class="card-img-top" alt="..." style="max-height: 10rem; max-width: 10rem;">
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
