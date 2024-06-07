@@ -24,6 +24,6 @@ class CreateBoxPostAction
 
         $tabNewBox = ['token' => $token, 'libelle' => $data['libelle'], 'description' => $data['description'], 'isKdo' => $isKdo, 'message_kdo' => $data['msgKdo']];
         $boxService->createBox($tabNewBox);
-        return $response->withStatus(302)->withHeader('Location', '/categories');
+        return $response->withStatus(302)->withHeader('Location', '/box');
     }
 }
