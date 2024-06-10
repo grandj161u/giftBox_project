@@ -3,6 +3,7 @@
 namespace gift\appli\core\services;
 
 use gift\appli\core\domain\Box;
+use gift\appli\core\domain\Box2presta;
 
 class ServiceBox implements ServiceBoxInterface
 {
@@ -26,6 +27,27 @@ class ServiceBox implements ServiceBoxInterface
         }
 
         return $tabBox->toArray();
+    }
+
+    public function getPrestationsByIdBox($id): array
+    {
+        try {
+            $AssocBoxPresta = Box2presta::where('box_id', $id)->get();
+
+            $serviceCatalogue = new ServiceCatalogue();
+
+            $tabPresta = [];
+
+            foreach ($AssocBoxPresta as $assoc) {
+                $presta = $serviceCatalogue->getPrestationById($assoc['presta_id']);
+                $tabPresta[] = $presta;
+                $tabPresta[count($tabPresta) - 1]['quantite'] = $assoc['quantite'];
+            }
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            throw new CatalogueNotFoundException("Les prestations de la box n'ont pas été trouvées !" . $e);
+        }
+
+        return $tabPresta;
     }
 
     public function createBox($data): string

@@ -12,6 +12,7 @@ use gift\appli\app\actions\ListeCategAction;
 use gift\appli\app\actions\DetailPrestationAction;
 use gift\appli\app\actions\ListePrestaAction;
 use gift\appli\app\actions\ListeBoxAction;
+use gift\appli\app\actions\DetailBoxAction;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -66,10 +67,10 @@ return function (\Slim\App $app): \Slim\App {
         ListeBoxAction::class
     );
 
-    // $app->get(
-    //     '/box/{id}',
-    //     DetailBoxAction::class
-    // );
+    $app->get(
+        '/box/{id}',
+        DetailBoxAction::class
+    );
 
     return $app;
 };
