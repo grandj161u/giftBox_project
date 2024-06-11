@@ -52,38 +52,6 @@
       <path value="$PROJECT_DIR$/src/vendor/illuminate/contracts" />
       <path value="$PROJECT_DIR$/src/vendor/illuminate/support" />
       <path value="$PROJECT_DIR$/src/vendor/illuminate/macroable" />
-      <path value="$PROJECT_DIR$/api/src/vendor/illuminate/database" />
-      <path value="$PROJECT_DIR$/api/src/vendor/illuminate/contracts" />
-      <path value="$PROJECT_DIR$/api/src/vendor/illuminate/support" />
-      <path value="$PROJECT_DIR$/api/src/vendor/illuminate/macroable" />
-      <path value="$PROJECT_DIR$/api/src/vendor/composer" />
-      <path value="$PROJECT_DIR$/api/src/vendor/fig/http-message-util" />
-      <path value="$PROJECT_DIR$/api/src/vendor/psr/container" />
-      <path value="$PROJECT_DIR$/api/src/vendor/psr/clock" />
-      <path value="$PROJECT_DIR$/api/src/vendor/psr/http-message" />
-      <path value="$PROJECT_DIR$/api/src/vendor/psr/http-factory" />
-      <path value="$PROJECT_DIR$/api/src/vendor/psr/http-server-middleware" />
-      <path value="$PROJECT_DIR$/api/src/vendor/psr/http-server-handler" />
-      <path value="$PROJECT_DIR$/api/src/vendor/psr/simple-cache" />
-      <path value="$PROJECT_DIR$/api/src/vendor/psr/log" />
-      <path value="$PROJECT_DIR$/api/src/vendor/slim/slim" />
-      <path value="$PROJECT_DIR$/api/src/vendor/slim/psr7" />
-      <path value="$PROJECT_DIR$/api/src/vendor/brick/math" />
-      <path value="$PROJECT_DIR$/api/src/vendor/voku/portable-ascii" />
-      <path value="$PROJECT_DIR$/api/src/vendor/nesbot/carbon" />
-      <path value="$PROJECT_DIR$/api/src/vendor/nikic/fast-route" />
-      <path value="$PROJECT_DIR$/api/src/vendor/symfony/polyfill-mbstring" />
-      <path value="$PROJECT_DIR$/api/src/vendor/symfony/clock" />
-      <path value="$PROJECT_DIR$/api/src/vendor/symfony/polyfill-php83" />
-      <path value="$PROJECT_DIR$/api/src/vendor/symfony/polyfill-php80" />
-      <path value="$PROJECT_DIR$/api/src/vendor/symfony/translation-contracts" />
-      <path value="$PROJECT_DIR$/api/src/vendor/symfony/translation" />
-      <path value="$PROJECT_DIR$/api/src/vendor/carbonphp/carbon-doctrine-types" />
-      <path value="$PROJECT_DIR$/api/src/vendor/doctrine/inflector" />
-      <path value="$PROJECT_DIR$/api/src/vendor/illuminate/collections" />
-      <path value="$PROJECT_DIR$/api/src/vendor/ralouphie/getallheaders" />
-      <path value="$PROJECT_DIR$/api/src/vendor/illuminate/container" />
-      <path value="$PROJECT_DIR$/api/src/vendor/illuminate/conditionable" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
