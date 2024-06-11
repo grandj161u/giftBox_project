@@ -12,8 +12,13 @@ use gift\appli\app\actions\ListeCategAction;
 use gift\appli\app\actions\DetailPrestationAction;
 use gift\appli\app\actions\ListePrestaAction;
 use gift\appli\app\actions\ListeBoxAction;
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
+use gift\appli\app\actions\RegisterPostAction;
+use gift\appli\app\actions\RegisterGetAction;
+use gift\appli\app\actions\RegisterSuccessAction;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Slim\Views\Twig;
+
 
 return function (\Slim\App $app): \Slim\App {
 
@@ -65,6 +70,21 @@ return function (\Slim\App $app): \Slim\App {
         '/box',
         ListeBoxAction::class
     );
+
+    $app->get(
+        '/register',
+        RegisterGetAction::class
+    )->setName('register');
+
+    $app->post(
+        '/register',
+        RegisterPostAction::class
+    );
+
+    $app->get(
+        '/register-successful',
+        RegisterSuccessAction::class
+    )->setName('register-successful');
 
     // $app->get(
     //     '/box/{id}',
