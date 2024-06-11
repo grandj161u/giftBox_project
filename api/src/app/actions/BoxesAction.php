@@ -2,19 +2,18 @@
 
 namespace gift\appli\api\app\actions;
 
-use gift\appli\api\core\services\CategorieService;
+use gift\appli\api\core\services\BoxesService;
 
-class CategorieAction
+class BoxesAction
 {
     public function __invoke($request, $response, $args)
     {
-        $categorieService = new CategorieService();
+        $boxesService = new BoxesService();
 
-        $categories = $categorieService->getAll();
+        $box = $boxesService->get($args['ID']);
 
         $data = [ 'type' => 'resource',
-            'count' => count($categories),
-            'categorie' => $categories ];
+            'box' => $box ];
 
         $response->getBody()->write(json_encode($data));
 
