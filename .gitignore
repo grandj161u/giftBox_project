@@ -1,7 +1,5 @@
 /src/vendor/*
 
-/api/src/vendor/*
-
 /src/conf/gift.db.conf.ini
 
 /.idea
