@@ -14,6 +14,16 @@
 	</figure>
 
 	<hr>
+	<form method="get" action="/prestations" id="sortForm" class="d-flex align-items-center justify-content-end">
+		<div class="form-group mb-0">
+			<select class="form-control" id="sortOption" name="sortOption">
+				<option value="none" {% if app.request.query.get('sortOption') == 'alphabetique' %}selected{% endif %}>Aucun</option>
+				<option value="asc" {% if app.request.query.get('sortOption') == 'prixASC' %}selected{% endif %}>Prix croissant</option>
+				<option value="desc" {% if app.request.query.get('sortOption') == 'prixDESC' %}selected{% endif %}>Prix décroissant</option>
+			</select>
+		</div>
+		<button type="submit" class="btn btn-primary ml-2 pl-3">Trier</button>
+	</form>
 
 	<div class="container mt-4">
 		<ul class="list-unstyled d-flex flex-wrap justify-content-around">

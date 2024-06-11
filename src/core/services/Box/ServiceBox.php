@@ -1,8 +1,9 @@
 <?php
 
-namespace gift\appli\core\services;
+namespace gift\appli\core\services\Box;
 
 use gift\appli\core\domain\Box;
+use gift\appli\core\services\Catalogue\CatalogueNotFoundException;
 
 class ServiceBox implements ServiceBoxInterface
 {

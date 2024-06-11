@@ -1,6 +1,6 @@
 <?php
 
-namespace gift\appli\core\services;
+namespace gift\appli\core\services\Catalogue;
 
 use gift\appli\core\domain\Categorie;
 use gift\appli\core\domain\Prestation;
@@ -58,6 +58,16 @@ class ServiceCatalogue implements ServiceCatalogueInterface
             $tabPresta = Prestation::where('cat_id', '=', $categorieId)->get()->toArray();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             throw new CatalogueNotFoundException("La préstation n'éxiste pas : " . $e);
+        }
+
+        return $tabPresta;
+    }
+
+    public function getPrestationsSortByTarif($param){
+        try {
+            $tabPresta = Prestation::orderBy('tarif', $param)->get()->toArray();
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            throw new CatalogueNotFoundException("Les prestations sont introuvables : " . $e);
         }
 
         return $tabPresta;

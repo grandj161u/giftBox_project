@@ -2,12 +2,8 @@
 
 namespace gift\appli\app\actions;
 
-use gift\appli\core\services\ServiceBox;
-use gift\appli\utils\ConnectionBD;
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
+use gift\appli\core\services\Box\ServiceBox;
 use Slim\Views\Twig;
-use gift\appli\core\services\ServiceCatalogue;
 
 class ListeBoxAction
 {

@@ -2,10 +2,7 @@
 
 namespace gift\appli\app\actions;
 
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
-use Slim\Exception\HttpBadRequestException;
-use gift\appli\core\services\ServiceCatalogue;
+use gift\appli\core\services\Catalogue\ServiceCatalogue;
 use Slim\Exception\HttpNotFoundException;
 use Slim\Views\Twig;
 

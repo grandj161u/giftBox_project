@@ -3,8 +3,6 @@
 namespace gift\appli\app\actions;
 
 use gift\appli\app\utils\CsrfService;
-use gift\appli\core\services\ServiceCatalogue;
-use Slim\Exception\HttpNotFoundException;
 use Slim\Views\Twig;
 
 class CreateCategGetAction

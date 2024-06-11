@@ -1,6 +1,6 @@
 <?php
 
-namespace gift\appli\core\services;
+namespace gift\appli\core\services\Box;
 
 interface ServiceBoxInterface
 {
