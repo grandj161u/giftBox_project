@@ -3,10 +3,12 @@
 namespace gift\appli\api\app\actions;
 
 use gift\appli\api\core\services\BoxesService;
+use Slim\Psr7\Request;
+use Slim\Psr7\Response;
 
 class BoxesAction
 {
-    public function __invoke($request, $response, $args)
+    public function __invoke(Request $request, Response $response, $args)
     {
         $boxesService = new BoxesService();
 
