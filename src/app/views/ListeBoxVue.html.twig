@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Categ - Liste
+	Box - Liste
 {% endblock %}
 
 {% block body %}
@@ -20,11 +20,13 @@
 	<hr>
 
 	<div class="container mt-4">
-		<ul class="list-group">
+		<ul class="list-unstyled d-flex flex-wrap justify-content-around">
 			{% for b in box %}
-				<li class="list-group-item">
-					<a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/box/{{ b.id }}">{{ b.libelle }}</a>
-				</li>
+				<div class="card" style="width: 10rem; height: 10rem;" onclick="window.location.href='/box/{{ b.id }}'" onmouseover="this.style.cursor='pointer'; this.style.backgroundColor='#f8f9fa';" onmouseout="this.style.backgroundColor='white';">
+					<div class="card-body">
+						<h5 class="card-title">{{ b.libelle }}</h5>
+					</div>
+				</div>
 			{% endfor %}
 		</ul>
 	</div>
