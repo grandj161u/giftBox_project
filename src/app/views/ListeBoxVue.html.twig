@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Categ - Liste
+	Box - Liste
 {% endblock %}
 
 {% block body %}
@@ -14,7 +14,7 @@
 			</h1>
 		</blockquote>
 
-		<a href="/box/createBox" class="btn btn-primary btn-lg mx-4 mt-2">Créer une nouvelle Box</a>
+		<a href="{{ url_for('createBoxGet') }}" class="btn btn-primary btn-lg mx-4 mt-2">Créer une nouvelle Box</a>
 	</figure>
 
 	<hr>
@@ -23,7 +23,7 @@
 		<ul class="list-group">
 			{% for b in box %}
 				<li class="list-group-item">
-					<a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/box/{{ b.id }}">{{ b.libelle }}</a>
+					<a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{ url_for('detailBox', {'id': b.id}) }}">{{ b.libelle }}</a>
 				</li>
 			{% endfor %}
 		</ul>

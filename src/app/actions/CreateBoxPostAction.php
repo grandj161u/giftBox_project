@@ -23,7 +23,14 @@ class CreateBoxPostAction
         $isKdo = $data['isKdo'] == 'true' ? 1 : 0;
 
         $tabNewBox = ['token' => $token, 'libelle' => $data['libelle'], 'description' => $data['description'], 'isKdo' => $isKdo, 'message_kdo' => $data['msgKdo']];
-        $boxService->createBox($tabNewBox);
-        return $response->withStatus(302)->withHeader('Location', '/box');
+        $idBoxCourante = $boxService->createBox($tabNewBox);
+
+        $_SESSION['idBoxCourante'] = $idBoxCourante;
+
+        $routeContext = \Slim\Routing\RouteContext::fromRequest($request);
+        $routeParser = $routeContext->getRouteParser();
+        $url = $routeParser->urlFor('listeBox');
+
+        return $response->withStatus(302)->withHeader('Location', $url);
     }
 }

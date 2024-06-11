@@ -18,6 +18,11 @@ class CreateCategPostAction
         }
         $tabNewCateg = ['libelle' => $data['libelle'], 'description' => $data['description']];
         $catalogue->createCategorie($tabNewCateg);
-        return $response->withStatus(302)->withHeader('Location', '/categories');
+
+        $routeContext = \Slim\Routing\RouteContext::fromRequest($request);
+        $routeParser = $routeContext->getRouteParser();
+        $url = $routeParser->urlFor('listeCategories');
+
+        return $response->withStatus(302)->withHeader('Location', $url);
     }
 }
