@@ -112,5 +112,50 @@ class ServiceBox implements ServiceBoxInterface
             throw new CatalogueNotFoundException("La box n'a pas été supprimée !" . $e);
         }
     }
-} {
+
+    public function addPrestationToBox($boxId, $prestaId): void
+    {
+        try {
+            $association = Box2presta::where('box_id', $boxId)->where('presta_id', $prestaId)->first();
+
+            if ($association) {
+                $association->quantite++;
+            } else {
+                $association = new Box2presta();
+                $association->box_id = $boxId;
+                $association->presta_id = $prestaId;
+                $association->quantite = 1;
+            }
+
+            var_dump($association);
+
+            $association->save();
+
+            $this->actualiserMontantBox($boxId);
+        } catch (\Illuminate\Database\QueryException $e) {
+            throw new CatalogueNotFoundException("La prestation n'a pas été ajoutée à la box !" . $e);
+        }
+    }
+
+    public function actualiserMontantBox($id): void
+    {
+        try {
+            $box = Box::findOrFail($id);
+            $montant = 0;
+
+            $AssocBoxPresta = Box2presta::where('box_id', $id)->get();
+
+            $serviceCatalogue = new ServiceCatalogue();
+
+            foreach ($AssocBoxPresta as $assoc) {
+                $presta = $serviceCatalogue->getPrestationById($assoc['presta_id']);
+                $montant += $presta['tarif'] * $assoc['quantite'];
+            }
+
+            $box->montant = $montant;
+            $box->save();
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            throw new CatalogueNotFoundException("Le montant de la box n'a pas été actualisé !" . $e);
+        }
+    }
 }

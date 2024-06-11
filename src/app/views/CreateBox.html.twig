@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Create Box
+	Box - Création
 {% endblock %}
 
 {% block body %}
 	<div class="container mt-4">
 		<h2>Créer une box</h2>
-		<form action="/box/createBox" method="post">
+		<form action="{{ url_for('createBoxPost') }}" method="post">
 			<div class="form-group">
 				<label for="libelle">Libelle de la box</label>
 				<input type="text" class="form-control" id="libelle" name="libelle" required>
