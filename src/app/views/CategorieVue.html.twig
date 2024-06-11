@@ -15,38 +15,10 @@
 	</figure>
 
 	<hr>
-
 	<div class="container mt-4">
-		<h2>Les prestations de la catégorie :
-		</h2>
-
-		<table class="table table-hover table-primary table-bordered">
-			<thead>
-				<tr>
-					<th scope="col">Libelle</th>
-					<th scope="col">Id</th>
-					<th scope="col">Description</th>
-					<th scope="col">Tarif</th>
-				</tr>
-			</thead>
-			<tbody>
-
-			{% for prestation in prestations %}
-
-					<tr class="table-light" onclick="window.location.href='/prestation?id={{ prestation.id }}'" onmouseover="this.style.cursor='pointer'; this.style.backgroundColor='#f8f9fa';" onmouseout="this.style.backgroundColor='white';">
-						<td>
-							<a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/prestation?id={{ prestation.id }}">{{ prestation.libelle }}</a>
-						</td>
-						<td>{{ prestation.id }}</td>
-						<td>{{ prestation.description }}</td>
-						<td>{{ prestation.tarif }}
-							€</td>
-					</tr>
-
-			{% endfor %}
-			</tbody>
-
-		</table>
+		<h3>Les prestations de la catégorie :</h3>
 	</div>
+	{% include 'prestations.html.twig' %}
 
-{% endblock %}
+
+	{% endblock %}

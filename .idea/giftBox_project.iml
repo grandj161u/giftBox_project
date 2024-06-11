@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/." isTestSource="false" packagePrefix="gift\appli\" />
       <sourceFolder url="file://$MODULE_DIR$/src/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/api/src/." isTestSource="false" packagePrefix="gift\appli\api\" />
       <excludeFolder url="file://$MODULE_DIR$/src/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/src/vendor/carbonphp/carbon-doctrine-types" />
       <excludeFolder url="file://$MODULE_DIR$/src/vendor/composer" />

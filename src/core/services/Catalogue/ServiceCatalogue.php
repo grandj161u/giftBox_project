@@ -44,7 +44,7 @@ class ServiceCatalogue implements ServiceCatalogueInterface
     public function getPrestationById($id): array
     {
         try {
-            $tabPresta = Prestation::findOrFail($id)->toArray();
+            $tabPresta = Prestation::with("categorie")->findOrFail($id)->toArray();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             throw new CatalogueNotFoundException("La préstation n'éxiste pas : " . $e);
         }

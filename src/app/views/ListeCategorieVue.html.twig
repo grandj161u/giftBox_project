@@ -14,17 +14,23 @@
 			</h1>
 		</blockquote>
 
-		<a href="/categories/createCateg" class="btn btn-primary btn-lg mx-4 mt-2">Créer une catégorie</a>
+		<a href="{{ url_for('createCategGet') }}" class="btn btn-primary btn-lg mx-4 mt-2">Créer une catégorie</a>
 	</figure>
 
 	<hr>
 
 	<div class="container mt-4">
-		<ul class="list-group">
+		<ul class="list-unstyled d-flex flex-wrap justify-content-around">
 			{% for categorie in categories %}
-				<li class="list-group-item" onclick="window.location.href='/categorie/{{ categorie.id }}'" onmouseover="this.style.cursor='pointer'; this.style.backgroundColor='#f8f9fa';" onmouseout="this.style.backgroundColor='white';">
-					<a  class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="/categorie/{{ categorie.id }}">{{ categorie.libelle }}</a>
-				</li>
+
+				<div class="card" style="width: 20rem; height: 20rem;" onclick="window.location.href='{{ url_for('detailCategorie', {'id' : categorie.id}) }}'" onmouseover="this.style.cursor='pointer'; this.style.backgroundColor='#f8f9fa';" onmouseout="this.style.backgroundColor='white';">
+					<div class="card-header">
+						<h5 class="card-title">{{ categorie.libelle }}</h5>
+					</div>
+					<div class="card-body">
+						<p class="card-text">Description : {{ categorie.description }}</p>
+					</div>
+				</div>
 			{% endfor %}
 		</ul>
 	</div>

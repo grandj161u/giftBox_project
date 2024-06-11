@@ -43,3 +43,18 @@ services:
       - gift.net
     depends_on:
       - sql
+
+  api:
+    image: canals/php:latest
+    ports:
+      - "5280:80"
+    volumes :
+      - ./api/public:/var/www/html
+      - ./api/src:/var/www/src
+      - ./api/shared/img:/var/www/html/img
+      - ./api/shared/css:/var/www/html/css
+    working_dir: /var/www/html
+    networks:
+      - gift.net
+    depends_on:
+      - sql
