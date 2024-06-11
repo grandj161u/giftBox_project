@@ -13,7 +13,7 @@ class PrestationsAction
         $prestations = $prestationService->getAll();
 
         $data = [ 'type' => 'resource',
-            'count' => count($prestations['prestation']),
+            'count' => count($prestations),
             'prestations' => $prestations ];
 
         $response->getBody()->write(json_encode($data));
