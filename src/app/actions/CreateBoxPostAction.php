@@ -21,7 +21,10 @@ class CreateBoxPostAction
 
         $isKdo = $data['isKdo'] == 'true' ? 1 : 0;
 
-        $tabNewBox = ['token' => $token, 'libelle' => $data['libelle'], 'description' => $data['description'], 'isKdo' => $isKdo, 'message_kdo' => $data['msgKdo']];
+        // Si la case "Est-ce une box cadeau ?" n'est pas cochée, on ignore le "Message cadeau"
+        $messageKdo = $isKdo ? $data['msgKdo'] : null;
+
+        $tabNewBox = ['token' => $token, 'libelle' => $data['libelle'], 'description' => $data['description'], 'isKdo' => $isKdo, 'message_kdo' => $messageKdo];
         $idBoxCourante = $boxService->createBox($tabNewBox);
 
         $_SESSION['idBoxCourante'] = $idBoxCourante;
