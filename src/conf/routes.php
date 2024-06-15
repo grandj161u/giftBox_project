@@ -14,7 +14,8 @@ use gift\appli\app\actions\ListePrestaAction;
 use gift\appli\app\actions\ListeBoxAction;
 use gift\appli\app\actions\RegisterPostAction;
 use gift\appli\app\actions\RegisterGetAction;
-use gift\appli\app\actions\RegisterSuccessAction;
+use gift\appli\app\actions\AuthGetAction;
+use gift\appli\app\actions\AuthPostAction;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
@@ -82,9 +83,17 @@ return function (\Slim\App $app): \Slim\App {
     );
 
     $app->get(
-        '/register-successful',
-        RegisterSuccessAction::class
-    )->setName('register-successful');
+        '/login',
+        AuthGetAction::class
+    )->setName('login');    
+    
+    $app->post(
+        '/login',
+        AuthPostAction::class
+    )->setName('login');
+
+
+
 
     // $app->get(
     //     '/box/{id}',

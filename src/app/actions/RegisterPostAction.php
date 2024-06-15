@@ -34,7 +34,7 @@ class RegisterPostAction
             }
             $routeContext = RouteContext::fromRequest($request);
             $routeParser = $routeContext->getRouteParser();
-            $url = $routeParser->urlFor('register-successful');
+            $url = $routeParser->urlFor('login');
             try {
                 $user = $this->userService->createUser($args);
                 return $response->withStatus(302)->withHeader('Location', $url);

@@ -12,7 +12,7 @@ class AuthService implements AuthServiceInterface
     public function isAdmin($id): bool
     {
         $user = Utilisateur::find($id);
-        return $user->role == '3';
+        return $user->role == '100';
     }
 
     public function saveUser(Utilisateur $user)
@@ -63,7 +63,7 @@ class AuthService implements AuthServiceInterface
         $user->user_id = $args['user_id'];
         $user->password = $hash;
         $user->activation_token = $args['activation_token'];
-        $user->role = 2;
+        $user->role = 1;
 
         $this->saveUser($user);
         return $user;
@@ -72,20 +72,32 @@ class AuthService implements AuthServiceInterface
     public function checkPasswordValid(string $pass, string $user_id): bool
     {
         $user = Utilisateur::where('user_id', $user_id)->first();
-        return password_verify($pass, $user->password);
+
+        if ($user === null) {
+            error_log("Utilisateur non trouvé: $user_id");
+            return false;
+        }
+
+        $passwordValid = password_verify($pass, $user->password);
+
+        if (!$passwordValid) {
+            error_log("Mot de passe invalide pour : $user_id");
+        }
+
+        return $passwordValid;
     }
 
-    public function connectUser(array $args): Utilisateur
+    public function connectUser(array $args): ?Utilisateur
     {
         $user = Utilisateur::find($args['id']);
-        if ($user) {
+        if ($user) 
+        {
             $_SESSION['id'] = $user->id;
-            if ($user->role == 1) {
-                $user->role = 3;
-            } else {
-                $user->role = 4;
-            }
+            return $user;
         }
-        return $user;
+
+        error_log("Utilisateur non trouvé: {$args['id']}");
+        return null;
     }
+
 }
