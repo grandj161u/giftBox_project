@@ -70,6 +70,23 @@ class ServiceBox implements ServiceBoxInterface
             throw new CatalogueNotFoundException("La box n'a pas été créée !" . $e);
         }
 
+        //Si dans le formulaire de création de box, l'utilisateur a sélectionné une box prédefinie, on ajoute les prestations de cette box à la box créée
+        if ($data['boxPredefinie'] != null) {
+            try {
+                $prestations = $this->getPrestationsByIdBox($data['boxPredefinie']);
+            } catch (CatalogueNotFoundException $e) {
+                throw new CatalogueNotFoundException("Les prestations de la box prédefinie n'ont pas été trouvées !" . $e);
+            }
+
+            foreach ($prestations as $presta) {
+                try {
+                    $this->addPrestationToBox($box->id, $presta['id'], $presta['quantite']);
+                } catch (CatalogueNotFoundException $e) {
+                    throw new CatalogueNotFoundException("Les prestations de la box prédefinie n'ont pas été ajoutées à la box !" . $e);
+                }
+            }
+        }
+
         return $box->id;
     }
 
