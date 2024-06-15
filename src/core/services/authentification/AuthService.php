@@ -92,7 +92,7 @@ class AuthService implements AuthServiceInterface
         $user = Utilisateur::where('user_id', $args['id'])->first();
         if ($user) 
         {
-            $_SESSION['id'] = $user->getId();
+            $_SESSION['id'] = $user->id;
             return $user;
         }
 

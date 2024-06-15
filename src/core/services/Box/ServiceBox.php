@@ -63,6 +63,7 @@ class ServiceBox implements ServiceBoxInterface
             $box->message_kdo = $data['message_kdo'] == '' ? '' : $data['message_kdo'];
             $box->montant = 0;
             $box->statut = Box::CREATED;
+            $box->createur_id = $data['createur_id'];
             $box->save();
         } catch (\Illuminate\Database\QueryException $e) {
             throw new CatalogueNotFoundException("La box n'a pas été créée !" . $e);
@@ -158,5 +159,10 @@ class ServiceBox implements ServiceBoxInterface
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             throw new CatalogueNotFoundException("Le montant de la box n'a pas été actualisé !" . $e);
         }
+    }
+
+    public function validerBox($idBox, $idConnecte): void
+    {
+        //On vérifie que le créateur de la box est bien celui qui la valide
     }
 }

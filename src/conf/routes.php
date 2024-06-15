@@ -15,6 +15,7 @@ use gift\appli\app\actions\ListePrestaAction;
 use gift\appli\app\actions\ListeBoxAction;
 use gift\appli\app\actions\DetailBoxAction;
 use gift\appli\app\actions\AddPresta2BoxAction;
+use gift\appli\app\actions\LogoutAction;
 use gift\appli\app\actions\RegisterPostAction;
 use gift\appli\app\actions\RegisterGetAction;
 use gift\appli\app\actions\AuthGetAction;
@@ -110,6 +111,10 @@ return function (\Slim\App $app): \Slim\App {
         '/boxCourante',
         BoxCouranteAction::class
     )->setName('boxCourante');
+
+    $app->get(
+        '/logout', LogoutAction::class
+    )->setName('logout');
 
     return $app;
 };

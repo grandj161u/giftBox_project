@@ -20,7 +20,7 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url_for('boxCourante') }}">Box Courante</a>
 				</li>
-				{% if app.session.get('id') is not defined %}
+				{% if session.id is not defined %}
 					<li class="nav-item">
 						<a class="nav-link" href="/register">Créer un compte</a>
 					</li>
@@ -28,13 +28,12 @@
 						<a class="nav-link" href="/login">Se Connecter</a>
 					</li>
 				{% endif %}
-				{% if app.session.get('id') is defined %}
+				{% if session.id is defined %}
 					<li class="nav-item">
-						<p class="nav-link">Vous etes connecté</p>
+						<a class="nav-link" href="{{ url_for('logout') }}">Se Déconnecter</a>
 					</li>
 				{% endif %}
 			</ul>
 		</div>
 	</div>
 </nav>
-{{ dump(session.id) }}

@@ -16,8 +16,14 @@ class ValiderBoxAction
             throw new HttpNotFoundException($request, "Identifiant de box manquant");
         }
 
+        if (isset($_SESSION['id'])) {
+            $idConnecte = $_SESSION['id'];
+        } else {
+            throw new HttpNotFoundException($request, "Utilisateur non connecté");
+        }
+
         $serviceBox = new ServiceBox();
 
-        $serviceBox->validerBox($idBox);
+        $serviceBox->validerBox($idBox, $idConnecte);
     }
 }
