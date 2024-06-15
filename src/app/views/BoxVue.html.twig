@@ -52,6 +52,9 @@
 						<th scope="col">Description</th>
 						<th scope="col">Tarif</th>
 						<th scope="col">Quantité</th>
+						{% if box.statut == 1 %}
+							<th scope="col">Action</th>
+						{% endif %}
 					</tr>
 				</thead>
 				<tbody>
@@ -68,6 +71,14 @@
 							<td>{{ prestation.tarif }}
 								€</td>
 							<td>{{ prestation.quantite }}</td>
+							{% if box.statut == 1 %}
+								<td>
+									<form action="{{ url_for('deletePrestaFromBox') }}" method="get">
+										<input type="hidden" name="id" value="{{ prestation.id }}">
+										<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+									</form>
+								</td>
+							{% endif %}
 						</tr>
 
 					{% endfor %}

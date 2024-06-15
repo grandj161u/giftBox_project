@@ -220,4 +220,30 @@ class ServiceBox implements ServiceBoxInterface
         $box->statut = Box::PAYED;
         $box->save();
     }
+
+    public function supprimerPrestationDeBox(mixed $idBox, mixed $idPresta): void
+    {
+        //On vérifie que la box est bien en statut CREATED
+        $box = Box::findOrFail($idBox);
+        if ($box->statut != Box::CREATED) {
+            throw new CatalogueNotFoundException("La box n'est pas dans le bon statut !");
+        }
+
+        //On vérifie que l'utilisateur est bien le créateur de la box
+        if ($box->createur_id != $_SESSION['id']) {
+            throw new CatalogueNotFoundException("Vous n'êtes pas le créateur de cette box !");
+        }
+
+        try {
+            $association = Box2presta::where('box_id', $idBox)->where('presta_id', $idPresta)->first();
+
+            if ($association) {
+                $association->delete();
+            }
+
+            $this->actualiserMontantBox($idBox);
+        } catch (\Illuminate\Database\QueryException $e) {
+            throw new CatalogueNotFoundException("La prestation n'a pas été supprimée de la box !" . $e);
+        }
+    }
 }

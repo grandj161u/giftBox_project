@@ -21,6 +21,7 @@ use gift\appli\app\actions\RegisterPostAction;
 use gift\appli\app\actions\RegisterGetAction;
 use gift\appli\app\actions\AuthGetAction;
 use gift\appli\app\actions\AuthPostAction;
+use gift\appli\app\actions\SupprimerPrestaDeBox;
 use gift\appli\app\actions\ValiderBoxAction;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -125,6 +126,11 @@ return function (\Slim\App $app): \Slim\App {
     $app->get(
         '/payerBox', PayerBoxAction::class
     )->setName('payerBox');
+
+    $app->get(
+        '/deletePrestaFromBox', SupprimerPrestaDeBox::class
+    )->setName('deletePrestaFromBox');
+
 
     return $app;
 };
