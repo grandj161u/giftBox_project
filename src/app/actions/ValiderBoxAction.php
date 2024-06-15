@@ -3,6 +3,7 @@
 namespace gift\appli\app\actions;
 
 use gift\appli\core\services\Box\ServiceBox;
+use gift\appli\core\services\Catalogue\CatalogueNotFoundException;
 use Slim\Exception\HttpNotFoundException;
 
 class ValiderBoxAction
@@ -24,6 +25,17 @@ class ValiderBoxAction
 
         $serviceBox = new ServiceBox();
 
-        $serviceBox->validerBox($idBox, $idConnecte);
+        try {
+            $serviceBox->validerBox($idBox, $idConnecte);
+        } catch (CatalogueNotFoundException $e) {
+            throw new HttpNotFoundException($request, $e->getMessage());
+        }
+
+        $routeContext = \Slim\Routing\RouteContext::fromRequest($request);
+        $routeParser = $routeContext->getRouteParser();
+        $url = $routeParser->urlFor('listeBox');
+
+        return $response->withStatus(302)->withHeader('Location', $url);
+
     }
 }

@@ -17,10 +17,12 @@
 			<h1>Box :
 				{{ box.libelle }}</h1>
 			<p>{{ box.description }}</p>
-			<form action="{{ url_for('validerBox') }}" method="get">
-				<input type="hidden" name="id" value="{{ box.id }}">
-				<button type="submit" class="btn btn-primary btn-lg mt-4">Valider cette Box</button>
-			</form>
+			{% if box.statut == 1 %}
+				<form action="{{ url_for('validerBox') }}" method="get">
+					<input type="hidden" name="id" value="{{ box.id }}">
+					<button type="submit" class="btn btn-primary btn-lg mt-4">Valider cette Box</button>
+				</form>
+			{% endif %}
 		</div>
 
 	{% endif %}

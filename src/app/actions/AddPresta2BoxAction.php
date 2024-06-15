@@ -11,7 +11,6 @@ class AddPresta2BoxAction
     public function __invoke($request, $response, $args)
     {
         $boxService = new ServiceBox();
-        var_dump($request->getQueryParams());
 
         $idPresta = $request->getQueryParams()['id'] ?? null;
 
@@ -25,7 +24,11 @@ class AddPresta2BoxAction
             throw new HttpNotFoundException($request, "Identifiant de box manquant");
         }
 
-        $quantite = $request->getQueryParams()['quantite'] ?? 1;
+        if ($request->getQueryParams()['quantite'] == null) {
+            $quantite = 1;
+        } else {
+            $quantite = intval($request->getQueryParams()['quantite']);
+        }
 
         try {
             $boxService->addPrestationToBox($idBox, $idPresta, $quantite);

@@ -116,7 +116,7 @@ class ServiceBox implements ServiceBoxInterface
         }
     }
 
-    public function addPrestationToBox($boxId, $prestaId, $quantite): void
+    public function addPrestationToBox($boxId, $prestaId, int $quantite): void
     {
         try {
             $association = Box2presta::where('box_id', $boxId)->where('presta_id', $prestaId)->first();
@@ -164,5 +164,37 @@ class ServiceBox implements ServiceBoxInterface
     public function validerBox($idBox, $idConnecte): void
     {
         //On vérifie que le créateur de la box est bien celui qui la valide
+        $box = Box::with('prestation')->findOrFail($idBox);
+        if ($box->createur_id != $idConnecte) {
+            throw new CatalogueNotFoundException("Vous n'êtes pas le créateur de cette box !");
+        }
+
+        //la box doit contenir au moins 2 prestations, de 2 catégories
+        //différentes
+        if (count($box->prestation) < 2) {
+            throw new CatalogueNotFoundException("La box doit contenir au moins 2 prestations !");
+        }
+
+        $nbCategories = 0;
+        $categories = [];
+        foreach ($box->prestation as $presta) {
+            if (!in_array($presta->categorie, $categories)) {
+                $categories[] = $presta->categorie;
+                $nbCategories++;
+            }
+        }
+
+        if ($nbCategories < 2) {
+            throw new CatalogueNotFoundException("La box doit contenir des prestations de 2 catégories différentes !");
+        }
+
+        //On vérifie que la box est bien en statut CREATED
+        if ($box->statut != Box::CREATED) {
+            throw new CatalogueNotFoundException("La box n'est pas dans le bon statut !");
+        }
+
+        //On passe la box en statut VALIDATED
+        $box->statut = Box::VALIDATED;
+        $box->save();
     }
 }
