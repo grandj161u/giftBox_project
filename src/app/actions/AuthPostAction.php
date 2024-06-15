@@ -30,7 +30,7 @@ class AuthPostAction
         if($this->authService->checkPasswordValid($password, $user_id))
         {
             // Connexion reussi
-            $user = $this->authService->connectuser(['id' => $user_id]);
+            $this->authService->connectuser(['id' => $user_id]);
             $routeContext = RouteContext::fromRequest($request);
             $routeParser = $routeContext->getRouteParser();
 

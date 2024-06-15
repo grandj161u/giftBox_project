@@ -266,4 +266,9 @@ INSERT INTO `user` (`id`, `user_id`, `password`, `role`) VALUES
 ('9c025060-d3f4-4f24-9df4-5c2cff4307a3',	'lefort.roger@example.net',	'$2y$10$fQBkcScptbwvYWrjisHg3OdWiKCyH0VQ5jhISQ5PUWcRpbgdLmPiC',	1),
 ('9c025060-e843-4729-b2cd-44c29636764a',	'admin@gift.net',	'$2y$10$JAC.5T.rdONr/ZtgG8o9ceNiYdV.h03WDL4YjVfpPQKSys4MTkh0K',	100);
 
+ALTER TABLE user
+ADD COLUMN activation_token VARCHAR(128),
+ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+
 -- 2024-05-15 08:29:04

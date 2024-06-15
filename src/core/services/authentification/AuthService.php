@@ -89,10 +89,10 @@ class AuthService implements AuthServiceInterface
 
     public function connectUser(array $args): ?Utilisateur
     {
-        $user = Utilisateur::find($args['id']);
+        $user = Utilisateur::where('user_id', $args['id'])->first();
         if ($user) 
         {
-            $_SESSION['id'] = $user->id;
+            $_SESSION['id'] = $user->getId();
             return $user;
         }
 
