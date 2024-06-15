@@ -258,4 +258,15 @@ class ServiceBox implements ServiceBoxInterface
 
         return $tabBox->toArray();
     }
+
+    public function getAllBoxPredefinies()
+    {
+        try {
+            $tabBox = Box::where('createur_id', null)->get();
+        } catch (ModelNotFoundException $e) {
+            throw new CatalogueNotFoundException("Les box prédefinies n'ont pas été trouvées !" . $e);
+        }
+
+        return $tabBox->toArray();
+    }
 }
