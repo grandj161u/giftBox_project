@@ -15,8 +15,14 @@ use gift\appli\app\actions\ListePrestaAction;
 use gift\appli\app\actions\ListeBoxAction;
 use gift\appli\app\actions\DetailBoxAction;
 use gift\appli\app\actions\AddPresta2BoxAction;
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
+use gift\appli\app\actions\RegisterPostAction;
+use gift\appli\app\actions\RegisterGetAction;
+use gift\appli\app\actions\AuthGetAction;
+use gift\appli\app\actions\AuthPostAction;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Slim\Views\Twig;
+
 
 return function (\Slim\App $app): \Slim\App {
 
@@ -73,6 +79,27 @@ return function (\Slim\App $app): \Slim\App {
         '/box',
         ListeBoxAction::class
     )->setName('listeBox');
+
+
+    $app->get(
+        '/register',
+        RegisterGetAction::class
+    )->setName('register');
+
+    $app->post(
+        '/register',
+        RegisterPostAction::class
+    );
+
+    $app->get(
+        '/login',
+        AuthGetAction::class
+    )->setName('login');    
+    
+    $app->post(
+        '/login',
+        AuthPostAction::class
+    )->setName('login');
 
     $app->get(
         '/box/{id}',
