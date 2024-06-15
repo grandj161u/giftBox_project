@@ -17,9 +17,6 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url_for('listeBox') }}">Box</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ url_for('boxCourante') }}">Box Courante</a>
-				</li>
 				{% if session.id is not defined %}
 					<li class="nav-item">
 						<a class="nav-link" href="/register">Créer un compte</a>
@@ -29,6 +26,9 @@
 					</li>
 				{% endif %}
 				{% if session.id is defined %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('boxCourante') }}">Box Courante</a>
+					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{{ url_for('logout') }}">Se Déconnecter</a>
 					</li>

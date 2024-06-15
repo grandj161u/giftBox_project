@@ -118,6 +118,11 @@ class ServiceBox implements ServiceBoxInterface
 
     public function addPrestationToBox($boxId, $prestaId, int $quantite): void
     {
+        //On vérifie que la box est bien en statut CREATED
+        $box = Box::findOrFail($boxId);
+        if ($box->statut != Box::CREATED) {
+            throw new CatalogueNotFoundException("La box n'est pas dans le bon statut !");
+        }
         try {
             $association = Box2presta::where('box_id', $boxId)->where('presta_id', $prestaId)->first();
 
