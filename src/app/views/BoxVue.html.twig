@@ -5,13 +5,21 @@
 {% endblock %}
 
 {% block body %}
-	<figure>
-		<blockquote class="blockquote mx-4 mt-4">
-			<h1>La Box
+	{% if box is empty %}
+
+		<h3 class="text-center">Aucune box courante</h3>
+
+	{% endif %}
+
+	{% if box is not empty %}
+
+		<div class="container mt-4">
+			<h1>Box :
 				{{ box.libelle }}</h1>
-			<p class="mb-0">{{ box.description }}</p>
-		</blockquote>
-	</figure>
+			<p>{{ box.description }}</p>
+		</div>
+
+	{% endif %}
 
 	<hr>
 

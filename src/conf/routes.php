@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use gift\appli\app\actions\BoxCouranteAction;
 use gift\appli\app\actions\CreateBoxGetAction;
 use gift\appli\app\actions\CreateBoxPostAction;
 use gift\appli\app\actions\CreateCategGetAction;
@@ -77,6 +78,11 @@ return function (\Slim\App $app): \Slim\App {
         '/box/{id}',
         DetailBoxAction::class
     )->setName('detailBox');
+
+    $app->get(
+        '/boxCourante',
+        BoxCouranteAction::class
+    )->setName('boxCourante');
 
     return $app;
 };
