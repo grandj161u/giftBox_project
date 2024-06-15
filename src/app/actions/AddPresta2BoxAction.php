@@ -3,6 +3,7 @@
 namespace gift\appli\app\actions;
 
 use gift\appli\core\services\Box\ServiceBox;
+use gift\appli\core\services\Catalogue\CatalogueNotFoundException;
 use Slim\Exception\HttpNotFoundException;
 
 class AddPresta2BoxAction
@@ -26,7 +27,12 @@ class AddPresta2BoxAction
 
         $quantite = $request->getQueryParams()['quantite'] ?? 1;
 
-        $boxService->addPrestationToBox($idBox, $idPresta, $quantite);
+        try {
+            $boxService->addPrestationToBox($idBox, $idPresta, $quantite);
+        } catch (CatalogueNotFoundException $e) {
+            throw new HttpNotFoundException($request, $e->getMessage());
+        }
+
 
         $routeContext = \Slim\Routing\RouteContext::fromRequest($request);
         $routeParser = $routeContext->getRouteParser();
