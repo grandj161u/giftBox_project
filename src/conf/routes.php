@@ -16,6 +16,7 @@ use gift\appli\app\actions\ListeBoxAction;
 use gift\appli\app\actions\DetailBoxAction;
 use gift\appli\app\actions\AddPresta2BoxAction;
 use gift\appli\app\actions\LogoutAction;
+use gift\appli\app\actions\PayerBoxAction;
 use gift\appli\app\actions\RegisterPostAction;
 use gift\appli\app\actions\RegisterGetAction;
 use gift\appli\app\actions\AuthGetAction;
@@ -120,6 +121,10 @@ return function (\Slim\App $app): \Slim\App {
     $app->get(
         '/validerBox', ValiderBoxAction::class
     )->setName('validerBox');
+
+    $app->get(
+        '/payerBox', PayerBoxAction::class
+    )->setName('payerBox');
 
     return $app;
 };

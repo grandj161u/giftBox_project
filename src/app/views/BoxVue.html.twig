@@ -24,10 +24,12 @@
 				</form>
 			{% elseif box.statut == 2 %}
 				<h5 class="text-success">Box validée</h5>
-				<form action="" method="get">
+				<form action="{{ url_for('payerBox') }}" method="get">
 					<input type="hidden" name="id" value="{{ box.id }}">
 					<button type="submit" class="btn btn-primary btn-lg mt-4">Payer cette Box</button>
 				</form>
+			{% elseif box.statut == 3 %}
+				<h5 class="text-success">Box payée</h5>
 			{% endif %}
 		</div>
 

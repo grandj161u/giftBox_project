@@ -202,4 +202,22 @@ class ServiceBox implements ServiceBoxInterface
         $box->statut = Box::VALIDATED;
         $box->save();
     }
+
+    public function payerBox($idBox, $idConnecte): void
+    {
+        //On vérifie que le créateur de la box est bien celui qui la paye
+        $box = Box::findOrFail($idBox);
+        if ($box->createur_id != $idConnecte) {
+            throw new CatalogueNotFoundException("Vous n'êtes pas le créateur de cette box !");
+        }
+
+        //On vérifie que la box est bien en statut VALIDATED
+        if ($box->statut != Box::VALIDATED) {
+            throw new CatalogueNotFoundException("La box n'est pas dans le bon statut !");
+        }
+
+        //On passe la box en statut PAYED
+        $box->statut = Box::PAYED;
+        $box->save();
+    }
 }
