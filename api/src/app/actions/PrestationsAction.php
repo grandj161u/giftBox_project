@@ -2,7 +2,7 @@
 
 namespace gift\appli\api\app\actions;
 
-use gift\appli\api\core\services\PrestationService;
+use gift\appli\api\core\services\prestations\PrestationService;
 
 class PrestationsAction
 {
