@@ -46,5 +46,8 @@ class RegisterPostAction
                 return $response->withStatus(500)->withHeader('Content-Type', 'text/html');
             }
         }
+
+        $response->getBody()->write('Erreur lors de la création du compte');
+        return $response->withStatus(400)->withHeader('Content-Type', 'text/html');
     }
 }

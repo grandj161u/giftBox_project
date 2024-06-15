@@ -4,6 +4,7 @@ namespace gift\appli\app\actions;
 
 use gift\appli\app\utils\CsrfService;
 use gift\appli\core\services\Box\ServiceBox;
+use gift\appli\core\services\Catalogue\CatalogueNotFoundException;
 use Slim\Exception\HttpNotFoundException;
 
 class CreateBoxPostAction
@@ -25,7 +26,11 @@ class CreateBoxPostAction
         $messageKdo = $isKdo ? $data['msgKdo'] : null;
 
         $tabNewBox = ['token' => $token, 'libelle' => $data['libelle'], 'description' => $data['description'], 'isKdo' => $isKdo, 'message_kdo' => $messageKdo];
-        $idBoxCourante = $boxService->createBox($tabNewBox);
+        try {
+            $idBoxCourante = $boxService->createBox($tabNewBox);
+        } catch (CatalogueNotFoundException $e) {
+            throw new HttpNotFoundException($request, $e->getMessage());
+        }
 
         $_SESSION['idBoxCourante'] = $idBoxCourante;
 

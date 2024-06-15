@@ -1,0 +1,23 @@
+<?php
+
+namespace gift\appli\app\actions;
+
+use gift\appli\core\services\Box\ServiceBox;
+use Slim\Exception\HttpNotFoundException;
+
+class ValiderBoxAction
+{
+
+    public function __invoke($request, $response, $args)
+    {
+        $idBox = $request->getQueryParams()['id'] ?? null;
+
+        if (is_null($idBox)) {
+            throw new HttpNotFoundException($request, "Identifiant de box manquant");
+        }
+
+        $serviceBox = new ServiceBox();
+
+        $serviceBox->validerBox($idBox);
+    }
+}
