@@ -10,6 +10,7 @@ class AddPresta2BoxAction
     public function __invoke($request, $response, $args)
     {
         $boxService = new ServiceBox();
+        var_dump($request->getQueryParams());
 
         $idPresta = $request->getQueryParams()['id'] ?? null;
 
@@ -19,13 +20,13 @@ class AddPresta2BoxAction
 
         $idBox = $_SESSION['idBoxCourante'] ?? null;
 
-        var_dump($_SESSION);
-
         if (is_null($idBox)) {
             throw new HttpNotFoundException($request, "Identifiant de box manquant");
         }
 
-        $boxService->addPrestationToBox($idBox, $idPresta);
+        $quantite = $request->getQueryParams()['quantite'] ?? 1;
+
+        $boxService->addPrestationToBox($idBox, $idPresta, $quantite);
 
         $routeContext = \Slim\Routing\RouteContext::fromRequest($request);
         $routeParser = $routeContext->getRouteParser();

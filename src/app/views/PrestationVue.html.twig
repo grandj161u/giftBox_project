@@ -30,7 +30,11 @@
 			</blockquote>
 		</figure>
 		<div class="mt-4">
-		<a href="{{ url_for('addPresta2Box', {}, { 'id': prestation.id }) }}" class="btn btn-primary btn-lg mt-4">Ajouter cette Prestation à la box courante</a>
+			<form action="{{ url_for('addPresta2Box') }}" method="get">
+				<input type="hidden" name="id" value="{{ prestation.id }}">
+				<input type="number" name="quantite" id="quantite" class="form-control" placeholder="Quantité" min="1">
+				<button type="submit" class="btn btn-primary btn-lg mt-4">Ajouter cette Prestation à la box courante</button>
+			</form>
 		</div>
 	</div>
 

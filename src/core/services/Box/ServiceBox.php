@@ -115,21 +115,19 @@ class ServiceBox implements ServiceBoxInterface
         }
     }
 
-    public function addPrestationToBox($boxId, $prestaId): void
+    public function addPrestationToBox($boxId, $prestaId, $quantite): void
     {
         try {
             $association = Box2presta::where('box_id', $boxId)->where('presta_id', $prestaId)->first();
 
             if ($association) {
-                $association->quantite++;
+                $association->quantite += $quantite;
             } else {
                 $association = new Box2presta();
                 $association->box_id = $boxId;
                 $association->presta_id = $prestaId;
-                $association->quantite = 1;
+                $association->quantite = $quantite;
             }
-
-            var_dump($association);
 
             $association->save();
 
@@ -138,6 +136,7 @@ class ServiceBox implements ServiceBoxInterface
             throw new CatalogueNotFoundException("La prestation n'a pas été ajoutée à la box !" . $e);
         }
     }
+
 
     public function actualiserMontantBox($id): void
     {
