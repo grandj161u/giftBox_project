@@ -16,6 +16,7 @@ use gift\appli\app\actions\ListeBoxAction;
 use gift\appli\app\actions\DetailBoxAction;
 use gift\appli\app\actions\AddPresta2BoxAction;
 use gift\appli\app\actions\LogoutAction;
+use gift\appli\app\actions\MesBoxsAction;
 use gift\appli\app\actions\PayerBoxAction;
 use gift\appli\app\actions\RegisterPostAction;
 use gift\appli\app\actions\RegisterGetAction;
@@ -130,6 +131,10 @@ return function (\Slim\App $app): \Slim\App {
     $app->get(
         '/deletePrestaFromBox', SupprimerPrestaDeBox::class
     )->setName('deletePrestaFromBox');
+
+    $app->get(
+        '/mesBoxs',MesBoxsAction::class
+    )->setName('mesBoxs');
 
 
     return $app;

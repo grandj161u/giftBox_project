@@ -22,9 +22,12 @@
 	<div class="container mt-4">
 		<ul class="list-unstyled d-flex flex-wrap justify-content-around">
 			{% for b in box %}
-				<div class="card" style="width: 10rem; height: 10rem;" onclick="window.location.href='{{ url_for('detailBox', {'id': b.id}) }}'" onmouseover="this.style.cursor='pointer'; this.style.backgroundColor='#f8f9fa';" onmouseout="this.style.backgroundColor='white';">
-					<div class="card-body">
+				<div class="card" style="width: 20rem; height: 20rem;" onclick="window.location.href='{{ url_for('detailBox', {'id': b.id}) }}'" onmouseover="this.style.cursor='pointer'; this.style.backgroundColor='#f8f9fa';" onmouseout="this.style.backgroundColor='white';">
+					<div class="card-header">
 						<h5 class="card-title">{{ b.libelle }}</h5>
+					</div>
+					<div class="card-body">
+						<p class="card-text">Description : {{ b.description }}</p>
 					</div>
 				</div>
 			{% endfor %}

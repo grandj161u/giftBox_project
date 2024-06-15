@@ -6,6 +6,7 @@ use gift\appli\core\domain\Box;
 use gift\appli\core\services\Catalogue\ServiceCatalogue;
 use gift\appli\core\services\Catalogue\CatalogueNotFoundException;
 use gift\appli\core\domain\Box2presta;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ServiceBox implements ServiceBoxInterface
 {
@@ -13,7 +14,7 @@ class ServiceBox implements ServiceBoxInterface
     {
         try {
             $tabBox = Box::all();
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
             throw new CatalogueNotFoundException("Toutes les box ne sont pas trouvés : " . $e);
         }
 
@@ -24,7 +25,7 @@ class ServiceBox implements ServiceBoxInterface
     {
         try {
             $tabBox = Box::findOrFail($id);
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
             throw new CatalogueNotFoundException("La box n'a pas été trouvée !" . $e);
         }
 
@@ -45,7 +46,7 @@ class ServiceBox implements ServiceBoxInterface
                 $tabPresta[] = $presta;
                 $tabPresta[count($tabPresta) - 1]['quantite'] = $assoc['quantite'];
             }
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
             throw new CatalogueNotFoundException("Les prestations de la box n'ont pas été trouvées !" . $e);
         }
 
@@ -101,7 +102,7 @@ class ServiceBox implements ServiceBoxInterface
             }
 
             $box->save();
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
             throw new CatalogueNotFoundException("La box n'a pas été modifiée !" . $e);
         }
     }
@@ -111,7 +112,7 @@ class ServiceBox implements ServiceBoxInterface
         try {
             $box = Box::findOrFail($id);
             $box->delete();
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
             throw new CatalogueNotFoundException("La box n'a pas été supprimée !" . $e);
         }
     }
@@ -161,7 +162,7 @@ class ServiceBox implements ServiceBoxInterface
 
             $box->montant = $montant;
             $box->save();
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
             throw new CatalogueNotFoundException("Le montant de la box n'a pas été actualisé !" . $e);
         }
     }
@@ -245,5 +246,16 @@ class ServiceBox implements ServiceBoxInterface
         } catch (\Illuminate\Database\QueryException $e) {
             throw new CatalogueNotFoundException("La prestation n'a pas été supprimée de la box !" . $e);
         }
+    }
+
+    public function getBoxDeUser(string $id)
+    {
+        try {
+            $tabBox = Box::where('createur_id', $id)->get();
+        } catch (ModelNotFoundException $e) {
+            throw new CatalogueNotFoundException("Les box de l'utilisateur n'ont pas été trouvées !" . $e);
+        }
+
+        return $tabBox->toArray();
     }
 }
