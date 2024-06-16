@@ -66,19 +66,24 @@
 							<td>
 								<a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{ url_for('detailPrestation', {}, { 'id': prestation.id }) }}">{{ prestation.libelle }}</a>
 							</td>
-							<td>{{ prestation.presta_id }}</td>
+							<td>{{ prestation.id }}</td>
 							<td>{{ prestation.description }}</td>
 							<td>{{ prestation.tarif }}
 								€</td>
-							<td>{{ prestation.quantite }}</td>
+							<form action="{{ url_for('updatePrestaQtInBox') }}" method="get">
+							<td><input type="number" name="quantite" id="quantite" class="form-control" value="{{ prestation.quantite }}" min="1" onclick="event.stopPropagation();"</td>
 							{% if box.statut == 1 %}
 								<td>
+									<input type="hidden" name="id" value="{{ prestation.id }}">
+									<button type="submit" class="btn btn-primary btn-sm">Modifier</button>
+
 									<form action="{{ url_for('deletePrestaFromBox') }}" method="get">
 										<input type="hidden" name="id" value="{{ prestation.id }}">
 										<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
 									</form>
 								</td>
 							{% endif %}
+							</form>
 						</tr>
 
 					{% endfor %}
@@ -101,3 +106,4 @@
 	{% endif %}
 
 {% endblock %}
+

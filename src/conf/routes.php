@@ -24,9 +24,7 @@ use gift\appli\app\actions\AuthGetAction;
 use gift\appli\app\actions\AuthPostAction;
 use gift\appli\app\actions\SupprimerPrestaDeBox;
 use gift\appli\app\actions\ValiderBoxAction;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
-use Slim\Views\Twig;
+use gift\appli\app\actions\UpdatePrestaQtInBoxAction;
 
 
 return function (\Slim\App $app): \Slim\App {
@@ -135,6 +133,10 @@ return function (\Slim\App $app): \Slim\App {
     $app->get(
         '/mesBoxs',MesBoxsAction::class
     )->setName('mesBoxs');
+
+    $app->get(
+        '/updatePrestaQtInBox', UpdatePrestaQtInBoxAction::class
+    )->setName('updatePrestaQtInBox');
 
 
     return $app;

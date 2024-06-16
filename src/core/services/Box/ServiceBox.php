@@ -184,6 +184,28 @@ class ServiceBox implements ServiceBoxInterface
         }
     }
 
+    public function updateQtPrestaInBox($idBox, $idPresta, $quantite): void
+    {
+        //On vérifie que la box est bien en statut CREATED
+        $box = Box::findOrFail($idBox);
+        if ($box->statut != Box::CREATED) {
+            throw new CatalogueNotFoundException("La box n'est pas dans le bon statut !");
+        }
+
+        try {
+            $association = Box2presta::where('box_id', $idBox)->where('presta_id', $idPresta)->first();
+
+            if ($association) {
+                $association->quantite = $quantite;
+                $association->save();
+            }
+
+            $this->actualiserMontantBox($idBox);
+        } catch (\Illuminate\Database\QueryException $e) {
+            throw new CatalogueNotFoundException("La quantité de la prestation n'a pas été modifiée dans la box !" . $e);
+        }
+    }
+
     public function validerBox($idBox, $idConnecte): void
     {
         //On vérifie que le créateur de la box est bien celui qui la valide
