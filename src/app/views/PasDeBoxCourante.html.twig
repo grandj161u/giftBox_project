@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	Pas de box courante
+{% endblock %}
+
+{% block body %}
+
+	<figure>
+		<blockquote class="blockquote mx-4 mt-4">
+			<h1>Il n'y a pas de box courante</h1>
+		</blockquote>
+	</figure>
+
+	<hr>
+
+	<div class="container d-flex justify-content-center">
+		<a href="{{ url_for('listePrestations') }}" class="btn btn-primary btn-lg mx-4 mt-4">Retour à la liste de prestations</a>
+	</div>
+{% endblock %}

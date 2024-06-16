@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use gift\appli\utils\ConnectionBD;
 use Slim\Factory\AppFactory;
+use Slim\Flash\Messages;
 
 /* application boostrap */
 

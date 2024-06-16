@@ -26,7 +26,6 @@
 				<thead>
 					<tr>
 						<th scope="col">Libelle</th>
-						<th scope="col">Id</th>
 						<th scope="col">Description</th>
 						<th scope="col">Tarif</th>
 						<th scope="col">Quantité</th>
@@ -41,7 +40,6 @@
 							<td>
 								<a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{ url_for('detailPrestation', {}, { 'id': prestation.id }) }}">{{ prestation.libelle }}</a>
 							</td>
-							<td>{{ prestation.presta_id }}</td>
 							<td>{{ prestation.description }}</td>
 							<td>{{ prestation.tarif }}
 								€</td>

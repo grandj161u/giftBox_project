@@ -14,6 +14,7 @@ use gift\appli\app\actions\ListePrestaAction;
 use gift\appli\app\actions\ListeBoxAction;
 use gift\appli\app\actions\DetailBoxAction;
 use gift\appli\app\actions\AddPresta2BoxAction;
+use gift\appli\app\actions\PasDeBoxCouranteAction;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -77,6 +78,11 @@ return function (\Slim\App $app): \Slim\App {
         '/box/{id}',
         DetailBoxAction::class
     )->setName('detailBox');
+
+    $app->get(
+        '/pasDeBoxCourante',
+        PasDeBoxCouranteAction::class
+    )->setName('pasDeBoxCourante');
 
     return $app;
 };
