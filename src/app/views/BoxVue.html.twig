@@ -5,13 +5,35 @@
 {% endblock %}
 
 {% block body %}
-	<figure>
-		<blockquote class="blockquote mx-4 mt-4">
-			<h1>La Box
+	{% if box is empty %}
+
+		<h3 class="text-center">Aucune box courante</h3>
+
+	{% endif %}
+
+	{% if box is not empty %}
+
+		<div class="container mt-4">
+			<h1>Box :
 				{{ box.libelle }}</h1>
-			<p class="mb-0">{{ box.description }}</p>
-		</blockquote>
-	</figure>
+			<p>{{ box.description }}</p>
+			{% if box.statut == 1 %}
+				<form action="{{ url_for('validerBox') }}" method="get">
+					<input type="hidden" name="id" value="{{ box.id }}">
+					<button type="submit" class="btn btn-primary btn-lg mt-4">Valider cette Box</button>
+				</form>
+			{% elseif box.statut == 2 %}
+				<h5 class="text-success">Box validée</h5>
+				<form action="{{ url_for('payerBox') }}" method="get">
+					<input type="hidden" name="id" value="{{ box.id }}">
+					<button type="submit" class="btn btn-primary btn-lg mt-4">Payer cette Box</button>
+				</form>
+			{% elseif box.statut == 3 %}
+				<h5 class="text-success">Box payée</h5>
+			{% endif %}
+		</div>
+
+	{% endif %}
 
 	<hr>
 
@@ -29,6 +51,9 @@
 						<th scope="col">Description</th>
 						<th scope="col">Tarif</th>
 						<th scope="col">Quantité</th>
+						{% if box.statut == 1 %}
+							<th scope="col">Action</th>
+						{% endif %}
 					</tr>
 				</thead>
 				<tbody>
@@ -40,10 +65,24 @@
 							<td>
 								<a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{ url_for('detailPrestation', {}, { 'id': prestation.id }) }}">{{ prestation.libelle }}</a>
 							</td>
+							<td>{{ prestation.id }}</td>
 							<td>{{ prestation.description }}</td>
 							<td>{{ prestation.tarif }}
 								€</td>
-							<td>{{ prestation.quantite }}</td>
+							<form action="{{ url_for('updatePrestaQtInBox') }}" method="get">
+							<td><input type="number" name="quantite" id="quantite" class="form-control" value="{{ prestation.quantite }}" min="1" onclick="event.stopPropagation();"</td>
+							{% if box.statut == 1 %}
+								<td>
+									<input type="hidden" name="id" value="{{ prestation.id }}">
+									<button type="submit" class="btn btn-primary btn-sm">Modifier</button>
+
+									<form action="{{ url_for('deletePrestaFromBox') }}" method="get">
+										<input type="hidden" name="id" value="{{ prestation.id }}">
+										<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+									</form>
+								</td>
+							{% endif %}
+							</form>
 						</tr>
 
 					{% endfor %}
@@ -66,3 +105,4 @@
 	{% endif %}
 
 {% endblock %}
+

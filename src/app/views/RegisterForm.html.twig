@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Register</h1>
+    <form method="post" url="register">
+        <div>
+            <label for="Cuser_id">Email:</label>
+            <input type="email" id="Cuser_id" name="Cuser_id" required>
+        </div>
+        <div>
+            <label for="Cpassword">Password:</label>
+            <input type="password" id="Cpassword" name="Cpassword" required>
+        </div>
+        <div>
+            <label for="CCpassword">Confirm Password:</label>
+            <input type="password" id="CCpassword" name="CCpassword" required>
+        </div>
+        <div>
+            <button type="submit" name="createaccount">Create Account</button>
+        </div>
+    </form>
+{% endblock %}

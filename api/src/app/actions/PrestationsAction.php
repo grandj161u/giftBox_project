@@ -2,7 +2,7 @@
 
 namespace gift\appli\api\app\actions;
 
-use gift\appli\api\core\services\PrestationService;
+use gift\appli\api\core\services\prestations\PrestationService;
 
 class PrestationsAction
 {
@@ -13,7 +13,7 @@ class PrestationsAction
         $prestations = $prestationService->getAll();
 
         $data = [ 'type' => 'resource',
-            'count' => count($prestations['prestation']),
+            'count' => count($prestations),
             'prestations' => $prestations ];
 
         $response->getBody()->write(json_encode($data));

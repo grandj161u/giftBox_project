@@ -2,7 +2,7 @@
 
 namespace gift\appli\api\app\actions;
 
-use gift\appli\api\core\services\BoxesService;
+use gift\appli\api\core\services\boxes\BoxesService;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 

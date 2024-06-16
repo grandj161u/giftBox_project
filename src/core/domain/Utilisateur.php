@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Utilisateur extends Eloquent
 {
-    protected $table = 'utilisateur';
+    protected $table = 'user';
     protected $primaryKey = 'id';
-    public $timestamp = false;
+    public $keyType = 'string';
+
+
+
+    protected $fillable = ['user_id', 'password', 'role'];
 }

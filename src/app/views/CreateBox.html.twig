@@ -24,7 +24,17 @@
 			</div>
 			<div class="form-group mt-2">
 				<label for="msgKdo">Message cadeau</label>
-				<input type="text" class="form-control" id="msgKdo" name="msgKdo" required>
+				<input type="text" class="form-control" id="msgKdo" name="msgKdo">
+			</div>
+			<div class="form-group mt-2">
+				<label>
+					Choisir une box prédéfinie
+					<select class="form-select" name="boxPredefinie">
+						{% for b in box %}
+							<option value="{{ b.id }}">{{ b.libelle }}</option>
+						{% endfor %}
+					</select>
+				</label>
 			</div>
 			<div class="form-group">
 				<input type="hidden" class="form-control" name="csrf" value="{{ csrf }}" required>

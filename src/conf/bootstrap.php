@@ -26,6 +26,9 @@ $twig = \Slim\Views\Twig::create(
     ]
 );
 
+$environment = $twig->getEnvironment();
+$environment->addGlobal('session', $_SESSION);
+
 //On ajoute les extensions de debug
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 
