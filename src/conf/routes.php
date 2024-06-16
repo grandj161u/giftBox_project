@@ -25,6 +25,7 @@ use gift\appli\app\actions\AuthPostAction;
 use gift\appli\app\actions\SupprimerPrestaDeBox;
 use gift\appli\app\actions\ValiderBoxAction;
 use gift\appli\app\actions\UpdatePrestaQtInBoxAction;
+use gift\appli\app\actions\PasDeBoxCouranteAction;
 
 
 return function (\Slim\App $app): \Slim\App {
@@ -57,6 +58,11 @@ return function (\Slim\App $app): \Slim\App {
         '/prestation/addPresta2Box',
         AddPresta2BoxAction::class
     )->setName('addPresta2Box');
+
+    $app->get(
+        '/pasDeBoxCourante',
+        PasDeBoxCouranteAction::class
+    )->setName('pasDeBoxCourante');
 
     $app->get(
         '/categories/createCateg',

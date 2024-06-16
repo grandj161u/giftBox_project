@@ -51,9 +51,6 @@
 						<th scope="col">Description</th>
 						<th scope="col">Tarif</th>
 						<th scope="col">Quantité</th>
-						{% if box.statut == 1 %}
-							<th scope="col">Action</th>
-						{% endif %}
 					</tr>
 				</thead>
 				<tbody>
@@ -65,23 +62,23 @@
 							<td>
 								<a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="{{ url_for('detailPrestation', {}, { 'id': prestation.id }) }}">{{ prestation.libelle }}</a>
 							</td>
-							<td>{{ prestation.id }}</td>
 							<td>{{ prestation.description }}</td>
 							<td>{{ prestation.tarif }}
 								€</td>
 							<form action="{{ url_for('updatePrestaQtInBox') }}" method="get">
-							<td><input type="number" name="quantite" id="quantite" class="form-control" value="{{ prestation.quantite }}" min="1" onclick="event.stopPropagation();"</td>
-							{% if box.statut == 1 %}
-								<td>
-									<input type="hidden" name="id" value="{{ prestation.id }}">
-									<button type="submit" class="btn btn-primary btn-sm">Modifier</button>
+								<td><input type="number" name="quantite" id="quantite" class="form-control" value="{{ prestation.quantite }}" min="1" onclick="event.stopPropagation();">
+									{% if box.statut == 1 %}
 
-									<form action="{{ url_for('deletePrestaFromBox') }}" method="get">
 										<input type="hidden" name="id" value="{{ prestation.id }}">
-										<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-									</form>
+										<button type="submit" class="btn btn-primary btn-sm">Modifier</button>
+
+										<form action="{{ url_for('deletePrestaFromBox') }}" method="get">
+											<input type="hidden" name="id" value="{{ prestation.id }}">
+											<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+										</form>
+
+									{% endif %}
 								</td>
-							{% endif %}
 							</form>
 						</tr>
 
@@ -105,4 +102,3 @@
 	{% endif %}
 
 {% endblock %}
-

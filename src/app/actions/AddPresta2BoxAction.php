@@ -23,14 +23,10 @@ class AddPresta2BoxAction
 
         $url = $routeParser->urlFor('pasDeBoxCourante');
 
-        if (!isset($_SESSION['idBoxCourante'])) {
-            return $response->withStatus(302)->withHeader('Location', $url);
-        }
-
         $idBox = $_SESSION['idBoxCourante'] ?? null;
 
         if (is_null($idBox)) {
-            throw new HttpNotFoundException($request, "Identifiant de box manquant");
+            return $response->withStatus(302)->withHeader('Location', $url);
         }
 
         if ($request->getQueryParams()['quantite'] == null) {
