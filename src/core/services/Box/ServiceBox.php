@@ -6,6 +6,7 @@ use gift\appli\core\domain\Box;
 use gift\appli\core\services\Catalogue\ServiceCatalogue;
 use gift\appli\core\services\Catalogue\CatalogueNotFoundException;
 use gift\appli\core\domain\Box2presta;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ServiceBox implements ServiceBoxInterface
@@ -285,5 +286,24 @@ class ServiceBox implements ServiceBoxInterface
         }
 
         return $tabBox->toArray();
+    }
+
+    public function generateAccesURL($box_id)
+    {
+        try {
+            $box = Box::findOrFail($box_id);
+            //Verifier si la box est validée et payée 
+            if($box->status != Box::PAYED || $box->status != Box::VALIDATED){
+                throw new CatalogueNotFoundException("La box non valiée ou non payée !" );
+            }
+            //Recupération du token associé à la box
+            $token = $box->token;
+
+            //Générer l'URL d'accès
+            $accesURL = "http://localhost:5180/box/{$box_id}/access/{$token}";
+        } catch (ModelNotFoundException $e) {
+            throw new CatalogueNotFoundException("Les box pour générer l'URL n'ont pas été trouvées !" . $e);
+
+        }
     }
 }
