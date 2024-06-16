@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Détails de la Box
+{% endblock %}
+
+{% block body %}
+    <h1>{{ box.libelle }}</h1>
+    <p>{{ box.description }}</p>
+
+    <h2>Prestations incluses :</h2>
+    <ul>
+        {% for prestation in prestations %}
+            <li>{{ prestation.libelle }} - Quantité : {{ prestation.quantite }} - Prix : {{ prestation.tarif }} €</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
