@@ -293,7 +293,7 @@ class ServiceBox implements ServiceBoxInterface
         try {
             $box = Box::findOrFail($box_id);
             //Verifier si la box est validée et payée 
-            if($box->status != Box::PAYED || $box->status != Box::VALIDATED){
+            if($box->statut != Box::PAYED || $box->statut != Box::VALIDATED){
                 throw new CatalogueNotFoundException("La box non valiée ou non payée !" );
             }
             //Recupération du token associé à la box
@@ -306,4 +306,31 @@ class ServiceBox implements ServiceBoxInterface
 
         }
     }
+
+    public function getBoxValidePourUser(string $userID) : array
+    {
+        try {
+            $boxes = Box::where('createur_id', $userID)
+                ->where('statut', box::VALIDATED)
+                ->get();
+                
+                return $boxes->toArray();
+        } catch (ModelNotFoundException $e) {
+            throw new CatalogueNotFoundException("Aucune box validée trouvée" . $e);
+        }
+    }
+    
+    public function getBoxPayeePourUser(string $userID) : array
+    {
+        try {
+            $boxes = Box::where('createur_id', $userID)
+                ->where('statut', box::PAYED)
+                ->get();
+                
+                return $boxes->toArray();
+        } catch (ModelNotFoundException $e) {
+            throw new CatalogueNotFoundException("Aucune box payée trouvée" . $e);
+        }
+    }
+    
 }
