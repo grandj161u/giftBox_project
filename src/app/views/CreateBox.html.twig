@@ -30,7 +30,6 @@
 				<label>
 					Choisir une box prédéfinie
 					<select class="form-select" name="boxPredefinie">
-						<option value="0">Aucune</option>
 						{% for b in box %}
 							<option value="{{ b.id }}">{{ b.libelle }}</option>
 						{% endfor %}
