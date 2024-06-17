@@ -15,7 +15,11 @@ class CreateCategPostAction
         if (!CsrfService::check($data['csrf'])) {
             throw new HttpNotFoundException($request);
         }
-        $tabNewCateg = ['libelle' => $data['libelle'], 'description' => $data['description']];
+
+        $libelle = htmlspecialchars($data['libelle'], ENT_QUOTES, 'UTF-8');
+        $description = htmlspecialchars($data['description'], ENT_QUOTES, 'UTF-8');
+
+        $tabNewCateg = ['libelle' => $libelle, 'description' => $description];
         $catalogue->createCategorie($tabNewCateg);
 
         $routeContext = \Slim\Routing\RouteContext::fromRequest($request);

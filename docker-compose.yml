@@ -12,7 +12,7 @@ services:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     ports:
-      - "3307:3306"
+      - "20001:3306"
     networks:
       gift.net:
           aliases:
@@ -24,7 +24,7 @@ services:
     # command: php -S 0.0.0.0:8080
     ports:
       # - "11555:8080"
-      - "5080:8080"
+      - "20002:8080"
     networks:
       - gift.net
   
@@ -32,7 +32,7 @@ services:
     image: canals/php:latest
     ports:
       # - "11554:80"
-      - "5180:80"
+      - "20000:80"
     volumes :
       - ./public:/var/www/html
       - ./src:/var/www/src
@@ -47,7 +47,7 @@ services:
   api:
     image: canals/php:latest
     ports:
-      - "5280:80"
+      - "20004:80"
     volumes :
       - ./api/public:/var/www/html
       - ./api/src:/var/www/src

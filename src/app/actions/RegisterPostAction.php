@@ -9,7 +9,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Slim\Routing\RouteParser;
 use Slim\Routing\RouteContext;
 
-class RegisterPostAction 
+class RegisterPostAction
 {
     private AuthServiceInterface $userService;
 
@@ -23,9 +23,12 @@ class RegisterPostAction
         $postData = $request->getParsedBody();
 
         if (isset($postData['createaccount'])) {
+            $Cuser_id = htmlspecialchars($postData['Cuser_id'], ENT_QUOTES, 'UTF-8');
+            $Cpassword = htmlspecialchars($postData['Cpassword'], ENT_QUOTES, 'UTF-8');
+
             $args = [
-                'user_id' => $postData["Cuser_id"],
-                'password' => $postData["Cpassword"],
+                'user_id' => $Cuser_id,
+                'password' => $Cpassword
             ];
 
             if ($postData["Cpassword"] !== $postData["CCpassword"]) {
