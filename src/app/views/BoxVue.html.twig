@@ -69,24 +69,19 @@
 							<td>{{ prestation.description }}</td>
 							<td>{{ prestation.tarif }}
 								€</td>
-							<form action="{{ url_for('updatePrestaQtInBox') }}" method="get">
-								<td>{% if box.statut == 1 and box.createur_id != null %}<input type="number" name="quantite" id="quantite" class="form-control" value="{{ prestation.quantite }}" min="1" onclick="event.stopPropagation();">
-
-
+								<td>{% if box.statut == 1 and box.createur_id != null %}
+									<form action="{{ url_for('updatePrestaQtInBox') }}" method="get">
+										<input type="number" name="quantite" id="quantite" class="form-control" value="{{ prestation.quantite }}" min="1" onclick="event.stopPropagation();">
 										<input type="hidden" name="id" value="{{ prestation.id }}">
 										<input type="hidden" name="boxId" value="{{ box.id }}">
 										<button type="submit" class="btn btn-primary btn-sm">Modifier</button>
+									</form>
 
-										<form action="{{ url_for('deletePrestaFromBox') }}" method="get">
-											<input type="hidden" name="id" value="{{ prestation.id }}">
-											<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-										</form>
-
+									<a href="{{ url_for('deletePrestaFromBox', {}, { 'id': prestation.id, 'boxId': box.id }) }}" class="btn btn-danger btn-sm">Supprimer</a>
 									{% else %}
 										{{ prestation.quantite }}
 									{% endif %}
 								</td>
-							</form>
 						</tr>
 
 					{% endfor %}
