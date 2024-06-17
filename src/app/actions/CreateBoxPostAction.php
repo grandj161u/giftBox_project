@@ -24,8 +24,11 @@ class CreateBoxPostAction
 
         // Si la case "Est-ce une box cadeau ?" n'est pas cochée, on ignore le "Message cadeau"
         $messageKdo = $isKdo ? $data['msgKdo'] : null;
+        $messageKdo = htmlspecialchars($messageKdo, ENT_QUOTES, 'UTF-8');
+        $libelle = htmlspecialchars($data['libelle'], ENT_QUOTES, 'UTF-8');
+        $description = htmlspecialchars($data['description'], ENT_QUOTES, 'UTF-8');
 
-        $tabNewBox = ['token' => $token, 'libelle' => $data['libelle'], 'description' => $data['description'], 'isKdo' => $isKdo, 'message_kdo' => $messageKdo, 'createur_id' => $_SESSION['id'], 'boxPredefinie' => $data['boxPredefinie']];
+        $tabNewBox = ['token' => $token, 'libelle' => $libelle, 'description' => $description, 'isKdo' => $isKdo, 'message_kdo' => $messageKdo, 'createur_id' => $_SESSION['id'], 'boxPredefinie' => $data['boxPredefinie']];
         try {
             $idBoxCourante = $boxService->createBox($tabNewBox);
         } catch (CatalogueNotFoundException $e) {
