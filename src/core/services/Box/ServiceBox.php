@@ -303,6 +303,10 @@ class ServiceBox implements ServiceBoxInterface
     {
         try {
             $tabBox = Box::where('createur_id', null)->get();
+
+            foreach ($tabBox as $box) {
+                $this->actualiserMontantBox($box->id);
+            }
         } catch (ModelNotFoundException $e) {
             throw new CatalogueNotFoundException("Les box prédefinies n'ont pas été trouvées !" . $e);
         }

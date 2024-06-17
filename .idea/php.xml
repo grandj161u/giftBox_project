@@ -84,6 +84,8 @@
       <path value="$PROJECT_DIR$/api/src/vendor/illuminate/database" />
       <path value="$PROJECT_DIR$/api/src/vendor/illuminate/support" />
       <path value="$PROJECT_DIR$/api/src/vendor/composer" />
+      <path value="$PROJECT_DIR$/src/vendor/tecnickcom/tcpdf" />
+      <path value="$PROJECT_DIR$/src/vendor/slim/flash" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
@@ -93,6 +95,7 @@
   <component name="PhpUnit">
     <phpunit_settings>
       <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/api/src/vendor/autoload.php" />
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/src/vendor/autoload.php" />
     </phpunit_settings>
   </component>
   <component name="PsalmOptionsConfiguration">
