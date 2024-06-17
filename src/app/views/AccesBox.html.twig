@@ -14,5 +14,6 @@
             <li>{{ prestation.libelle }} - Quantité : {{ prestation.quantite }} - Prix : {{ prestation.tarif }} €</li>
         {% endfor %}
     </ul>
+<a href="{{ url_for('downloadBoxPdf', { 'token': box.token }) }}" class="btn btn-primary">Télécharger le coffret en PDF</a>
 
 {% endblock %}
