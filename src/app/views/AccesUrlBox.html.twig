@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Génération de l'URL d'accès
+{% endblock %}
+
+{% block body %}
+    <h1>URL d'accès générée avec succès</h1>
+    <p>Utilisez le lien suivant pour accéder au coffret :</p>
+    <a href="{{ accessUrl }}">{{ accessUrl }}</a>
+{% endblock %}

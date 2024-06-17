@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Détails de la Box - Cadeau
+{% endblock %}
+
+{% block body %}
+    <h1>{{ box.libelle }}</h1>
+    <p>{{ box.description }}</p>
+
+    <h3>Message de cadeau : {{ message }}</h3>
+
+    <h2>Prestations incluses :</h2>
+    <ul>
+        {% for prestation in prestations %}
+            <li>{{ prestation.libelle }} - Quantité : {{ prestation.quantite }}</li>
+        {% endfor %}
+    </ul>
+
+<a href="{{ url_for('downloadBoxPdf', { 'token': box.token }) }}" class="btn btn-primary">Télécharger le coffret en PDF</a>
+
+{% endblock %}

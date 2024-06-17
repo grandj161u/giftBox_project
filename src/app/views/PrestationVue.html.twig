@@ -32,7 +32,7 @@
 		<div class="mt-4">
 			<form action="{{ url_for('addPresta2Box') }}" method="get">
 				<input type="hidden" name="id" value="{{ prestation.id }}">
-				<input type="number" name="quantite" id="quantite" class="form-control" placeholder="Quantité" min="1">
+				<input type="number" name="quantite" id="quantite" class="form-control" placeholder="Quantité" min="1" value="1" required>
 				<button type="submit" class="btn btn-primary btn-lg mt-4">Ajouter cette Prestation à la box courante</button>
 			</form>
 		</div>

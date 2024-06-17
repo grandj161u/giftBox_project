@@ -11,6 +11,16 @@ class CreateBoxPostAction
 {
     public function __invoke($request, $response, $args)
     {
+
+        if (!isset($_SESSION['id'])) {
+            // Utilisateur redirigé vers le formulaire de login s'il n'est pas authentifié
+            $routeContext = \Slim\Routing\RouteContext::fromRequest($request);
+            $routeParser = $routeContext->getRouteParser();
+            $loginUrl = $routeParser->urlFor('login'); // Adjust the route name as needed
+
+            return $response->withStatus(302)->withHeader('Location', $loginUrl);
+        }
+
         $boxService = new ServiceBox();
         $data = $request->getParsedBody();
         if (!CsrfService::check($data['csrf'])) {
@@ -25,7 +35,16 @@ class CreateBoxPostAction
         // Si la case "Est-ce une box cadeau ?" n'est pas cochée, on ignore le "Message cadeau"
         $messageKdo = $isKdo ? $data['msgKdo'] : null;
 
-        $tabNewBox = ['token' => $token, 'libelle' => $data['libelle'], 'description' => $data['description'], 'isKdo' => $isKdo, 'message_kdo' => $messageKdo, 'createur_id' => $_SESSION['id'], 'boxPredefinie' => $data['boxPredefinie']];
+        $tabNewBox = [
+                'token' => $token, 
+                'libelle' => $data['libelle'], 
+                'description' => $data['description'], 
+                'isKdo' => $isKdo, 
+                'message_kdo' => $messageKdo, 
+                'createur_id' => $_SESSION['id'], 
+                'boxPredefinie' => $data['boxPredefinie']
+            ];
+            
         try {
             $idBoxCourante = $boxService->createBox($tabNewBox);
         } catch (CatalogueNotFoundException $e) {

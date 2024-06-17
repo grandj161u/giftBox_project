@@ -1,22 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Register</h1>
-    <form method="post" url="register">
-        <div>
-            <label for="Cuser_id">Email:</label>
-            <input type="email" id="Cuser_id" name="Cuser_id" required>
-        </div>
-        <div>
-            <label for="Cpassword">Password:</label>
-            <input type="password" id="Cpassword" name="Cpassword" required>
-        </div>
-        <div>
-            <label for="CCpassword">Confirm Password:</label>
-            <input type="password" id="CCpassword" name="CCpassword" required>
-        </div>
-        <div>
-            <button type="submit" name="createaccount">Create Account</button>
-        </div>
-    </form>
+<div class="container" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div class="register-form" style="width: 100%; max-width: 400px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+        <h1 style="text-align: center;">Register</h1>
+        <form method="post" url="register">
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="Cuser_id" style="display: block; margin-bottom: 5px;">Email:</label>
+                <input type="email" id="Cuser_id" name="Cuser_id" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="Cpassword" style="display: block; margin-bottom: 5px;">Password:</label>
+                <input type="password" id="Cpassword" name="Cpassword" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="CCpassword" style="display: block; margin-bottom: 5px;">Confirm Password:</label>
+                <input type="password" id="CCpassword" name="CCpassword" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+            <div class="form-group" style="margin-bottom: 20px;">
+                <button type="submit" name="createaccount" style="width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Create Account</button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

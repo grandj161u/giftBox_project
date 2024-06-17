@@ -30,6 +30,10 @@
 				</form>
 			{% elseif box.statut == 3 %}
 				<h5 class="text-success">Box payée</h5>
+				<form action="{{ url_for('genererUrlAcces') }}" method="get">
+                    <input type="hidden" name="id" value="{{ box.id }}">
+                    <button type="submit" class="btn btn-primary btn-lg mt-4">Générer la Box</button>
+                </form>
 			{% endif %}
 		</div>
 
