@@ -1,20 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="container">
-        <h1>Connexion</h1>
+<div class="container" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div class="login-form" style="width: 100%; max-width: 400px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+        <h1 style="text-align: center;">Connexion</h1>
         <form url="login" method="post">
-            <div class="form-group">
-                <label for="user_id">Email:</label>
-                <input type="email" id="user_id" name="user_id" required>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="user_id" style="display: block; margin-bottom: 5px;">Email:</label>
+                <input type="email" id="user_id" name="user_id" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
             </div>
-            <div class="form-group">
-                <label for="password">Mot de passe:</label>
-                <input type="password" id="password" name="password" required>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="password" style="display: block; margin-bottom: 5px;">Mot de passe:</label>
+                <input type="password" id="password" name="password" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
             </div>
-            <div class="form-group">
-                <button type="submit" name="connectaccount">Se connecter</button>
+            <div class="form-group" style="margin-bottom: 20px;">
+                <button type="submit" name="connectaccount" style="width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Se connecter</button>
+            </div>
+            <div class="form-group" style="display: flex; justify-content: center; align-items: center;">
+                <p style="margin-right: 5px;">Vous n'avez pas de compte ?</p>
+                <a class="nav-link" href="/register" style="color: #007bff; text-decoration: none;">Créer un compte</a>
             </div>
         </form>
     </div>
+</div>
 {% endblock %}

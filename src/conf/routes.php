@@ -26,6 +26,15 @@ use gift\appli\app\actions\SupprimerPrestaDeBox;
 use gift\appli\app\actions\ValiderBoxAction;
 use gift\appli\app\actions\UpdatePrestaQtInBoxAction;
 use gift\appli\app\actions\PasDeBoxCouranteAction;
+use \gift\appli\app\actions\AccesBoxAction;
+use \gift\appli\app\actions\GenererUrlAccesAction;
+use \gift\appli\app\actions\DownloadBoxPdfAction;
+
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Slim\Views\Twig;
+use Slim\Routing\RouteCollectorProxy;
+
 
 
 return function (\Slim\App $app): \Slim\App {
@@ -145,10 +154,24 @@ return function (\Slim\App $app): \Slim\App {
         MesBoxsAction::class
     )->setName('mesBoxs');
 
+
     $app->get(
         '/updatePrestaQtInBox',
         UpdatePrestaQtInBoxAction::class
     )->setName('updatePrestaQtInBox');
+
+    $app->get('/generate-url', GenererUrlAccesAction::class
+        )->setName('genererUrlAcces');
+      
+  
+    $app->get('/access/{token}', AccesBoxAction::class
+        )->setName('accessBox');
+
+        
+        $app->get('/download-box-pdf/{token}', DownloadBoxPdfAction::class)
+        ->setName('downloadBoxPdf');
+
+
 
 
     return $app;

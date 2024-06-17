@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Box Details</title>
+    <style>
+        /* Styles CSS pour le PDF */
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+        }
+        .box-details {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .box-details h2 {
+            margin-top: 0;
+        }
+        .box-details p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box-details">
+    <h2>Votre Box</h2>
+    <p><strong>Box Name:</strong> {{ box.libelle }}</p>
+    <p><strong>Description:</strong> {{ box.description }}</p>
+
+    {% if not box.kdo %}
+        <p><strong>Price:</strong> {{ box.montant }}</p>
+    {% endif %}
+
+    <p><strong>Created At:</strong> {{ box.created_at|date('Y-m-d H:i:s') }}</p>
+
+    {% if box.kdo %}
+        {% if box.message_kdo is not empty %}
+            <p><strong>Message du cadeau:</strong> {{ box.message_kdo }}</p>
+        {% else %}
+            <p><strong>Message du cadeau:</strong> Aucun message spécifié</p>
+        {% endif %}
+    {% endif %}
+</div>
+
+</body>
+</html>

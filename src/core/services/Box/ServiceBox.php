@@ -6,6 +6,7 @@ use gift\appli\core\domain\Box;
 use gift\appli\core\services\Catalogue\ServiceCatalogue;
 use gift\appli\core\services\Catalogue\CatalogueNotFoundException;
 use gift\appli\core\domain\Box2presta;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ServiceBox implements ServiceBoxInterface
@@ -308,4 +309,78 @@ class ServiceBox implements ServiceBoxInterface
 
         return $tabBox->toArray();
     }
+
+    public function generateAccesURL($box_id)
+    {
+        try {
+            $box = Box::findOrFail($box_id);
+            //Verifier si la box est validée et payée 
+            if($box->statut != Box::PAYED){
+                throw new CatalogueNotFoundException("La box non valiée ou non payée !" );
+            }
+            //Recupération du token associé à la box
+            $token = $box->token;
+
+            //Générer l'URL d'accès
+            return $accesURL = "http://localhost:5180/access/{$token}";
+        } catch (ModelNotFoundException $e) {
+            throw new CatalogueNotFoundException("Les box pour générer l'URL n'ont pas été trouvées !" . $e);
+
+        }
+    }
+
+    public function getBoxAccessDetails($boxId, $token): array
+    {
+        try {
+            $box = Box::where('id', $boxId)->where('token', $token)->firstOrFail();
+            $prestations = $this->getPrestationsByIdBox($boxId);
+            $details = [
+                'prestations' => $prestations,
+                'montant' => $box->montant,
+                'isKdo' => $box->kdo,
+                'message' => $box->message_kdo,
+            ];
+            return $details;
+        } catch (ModelNotFoundException $e) {
+            throw new CatalogueNotFoundException("Accès au coffret non autorisé !" . $e);
+        }
+    }
+
+
+    public function getBoxValidePourUser(string $userID) : array
+    {
+        try {
+            $boxes = Box::where('createur_id', $userID)
+                ->where('statut', box::VALIDATED)
+                ->get();
+                
+                return $boxes->toArray();
+        } catch (ModelNotFoundException $e) {
+            throw new CatalogueNotFoundException("Aucune box validée trouvée" . $e);
+        }
+    }
+    
+    public function getBoxPayeePourUser(string $userID) : array
+    {
+        try {
+            $boxes = Box::where('createur_id', $userID)
+                ->where('statut', box::PAYED)
+                ->get();
+                
+                return $boxes->toArray();
+        } catch (ModelNotFoundException $e) {
+            throw new CatalogueNotFoundException("Aucune box payée trouvée" . $e);
+        }
+    }
+
+    public function getBoxByToken($token)
+    {
+        try {
+            $box = Box::where('token', $token)->firstOrFail();
+            return $box;
+        } catch (ModelNotFoundException $e) {
+            throw new CatalogueNotFoundException("La box avec le token spécifié n'a pas été trouvée !" . $e);
+        }
+    }
+    
 }
