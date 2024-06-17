@@ -9,7 +9,7 @@ class Utilisateur extends Eloquent
     protected $table = 'user';
     protected $primaryKey = 'id';
     public $keyType = 'string';
-
+    public $timestamps = false;
 
 
     protected $fillable = ['user_id', 'password', 'role'];
