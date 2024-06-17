@@ -38,3 +38,4 @@ class SupprimerPrestaDeBox
         return $response->withStatus(302)->withHeader('Location', $url);
     }
 }
+

@@ -6,6 +6,7 @@ use gift\appli\app\utils\CsrfService;
 use gift\appli\core\services\Box\ServiceBox;
 use gift\appli\core\services\Catalogue\CatalogueNotFoundException;
 use Slim\Exception\HttpNotFoundException;
+use Slim\Routing\RouteContext;
 
 class CreateBoxPostAction
 {
@@ -14,7 +15,7 @@ class CreateBoxPostAction
 
         if (!isset($_SESSION['id'])) {
             // Utilisateur redirigé vers le formulaire de login s'il n'est pas authentifié
-            $routeContext = \Slim\Routing\RouteContext::fromRequest($request);
+            $routeContext = RouteContext::fromRequest($request);
             $routeParser = $routeContext->getRouteParser();
             $loginUrl = $routeParser->urlFor('login'); // Adjust the route name as needed
 
@@ -31,6 +32,10 @@ class CreateBoxPostAction
         $token = base64_encode(random_bytes(32));
 
         $isKdo = $data['isKdo'] == 'true' ? 1 : 0;
+
+        if ($data['boxPredefinie'] == 0) {
+            $data['boxPredefinie'] = null;
+        }
 
         // Si la case "Est-ce une box cadeau ?" n'est pas cochée, on ignore le "Message cadeau"
         $messageKdo = $isKdo ? $data['msgKdo'] : null;
@@ -56,7 +61,7 @@ class CreateBoxPostAction
 
         $_SESSION['idBoxCourante'] = $idBoxCourante;
 
-        $routeContext = \Slim\Routing\RouteContext::fromRequest($request);
+        $routeContext = RouteContext::fromRequest($request);
         $routeParser = $routeContext->getRouteParser();
         $url = $routeParser->urlFor('listeBox');
 
