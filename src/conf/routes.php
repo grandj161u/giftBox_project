@@ -166,7 +166,7 @@ return function (\Slim\App $app): \Slim\App {
     $app->get('/access/{token:.*}', AccesBoxAction::class)->setName('accessBox');
 
         
-    $app->get('/download-box-pdf/{token}', DownloadBoxPdfAction::class)
+    $app->get('/download-box-pdf/{token:.*}', DownloadBoxPdfAction::class)
     ->setName('downloadBoxPdf');
 
 
