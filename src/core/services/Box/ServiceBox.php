@@ -326,7 +326,7 @@ class ServiceBox implements ServiceBoxInterface
             $token = $box->token;
 
             //Générer l'URL d'accès
-            return $accesURL = "http://localhost:5180/access/{$token}";
+            return $accesURL = "/access/{$token}";
         } catch (ModelNotFoundException $e) {
             throw new CatalogueNotFoundException("Les box pour générer l'URL n'ont pas été trouvées !" . $e);
 

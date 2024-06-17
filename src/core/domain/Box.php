@@ -13,6 +13,7 @@ class Box extends Eloquent
     protected $primaryKey = 'id';
     public $incrementing = false;
     public $keyType = 'string';
+    public $timestamps = false;
 
     public const CREATED = 1;
     public const VALIDATED = 2;
