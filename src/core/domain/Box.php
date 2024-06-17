@@ -29,4 +29,13 @@ class Box extends Eloquent
             'presta_id'
         );
     }
+
+    public function user()
+    {
+        return $this->belongsTo(
+            Utilisateur::class,
+            'createur_id',
+            'id'
+        );
+    }
 }

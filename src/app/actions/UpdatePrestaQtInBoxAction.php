@@ -17,7 +17,7 @@ class UpdatePrestaQtInBoxAction
             throw new HttpNotFoundException($request, "Identifiant de prestation manquant");
         }
 
-        $idBox = $_SESSION['idBoxCourante'] ?? null;
+        $idBox = $request->getQueryParams()['boxId'] ?? null;
 
         if (is_null($idBox)) {
             throw new HttpNotFoundException($request, "Identifiant de box manquant");

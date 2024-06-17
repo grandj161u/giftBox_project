@@ -13,4 +13,13 @@ class Utilisateur extends Eloquent
 
 
     protected $fillable = ['user_id', 'password', 'role'];
+
+    public function box()
+    {
+        return $this->hasMany(
+            Box::class,
+            'createur_id',
+            'id'
+        );
+    }
 }
