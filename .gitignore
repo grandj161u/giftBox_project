@@ -9,9 +9,8 @@
 
 /.idea
 
-/src/composer.lock
-/src/composer.json
+*composer.lock
 
-/.vscode
+*.vscode
 
 *.yml
