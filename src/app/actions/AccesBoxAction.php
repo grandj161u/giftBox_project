@@ -4,15 +4,13 @@ namespace gift\appli\app\actions;
 
 use Exception;
 use gift\appli\core\services\Box\ServiceBox;
-use gift\appli\core\services\Catalogue\CatalogueNotFoundException;
-use Slim\Exception\HttpNotFoundException;
 use Slim\Views\Twig;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 class AccesBoxAction
 {
-    public function __invoke(Request $request, Response $response, $args)
+    public function __invoke(Request $request, Response $response, $args): Response
     {
         $token = $args['token'];
         $serviceBox = new ServiceBox();

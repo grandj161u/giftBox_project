@@ -162,14 +162,12 @@ return function (\Slim\App $app): \Slim\App {
 
     $app->get('/generate-url', GenererUrlAccesAction::class
         )->setName('genererUrlAcces');
-      
-  
-    $app->get('/access/{token}', AccesBoxAction::class
-        )->setName('accessBox');
+
+    $app->get('/access/{token:.*}', AccesBoxAction::class)->setName('accessBox');
 
         
-        $app->get('/download-box-pdf/{token}', DownloadBoxPdfAction::class)
-        ->setName('downloadBoxPdf');
+    $app->get('/download-box-pdf/{token}', DownloadBoxPdfAction::class)
+    ->setName('downloadBoxPdf');
 
 
 
